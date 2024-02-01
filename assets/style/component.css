@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&display=swap");
+
+.drug {
+  color: #7b7777;
+  border: none;
+  cursor: pointer;
+}
+
+.title-drug {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.carousel-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
