@@ -36,21 +36,21 @@ if (isset($_GET['lang'])) {
                         <div class="collapse navbar-collapse justify-content-end" id="multiCollapseExample1">
                             <ul class="navbar-nav">
                                 <li class="nav-item hover-underline-animation">
-                                    <a class="nav-link" id="nav_home" href="index?lang=<?php echo $lang?>">หน้าหลัก</a>
+                                    <a class="nav-link" id="nav_home" href="index.php?lang=<?php echo $lang?>">หน้าหลัก</a>
                                 </li>
                                 <li class="nav-item hover-underline-animation">
-                                    <a class="nav-link" id="nav_diseases" href="disease_information?lang=<?php echo $lang?>">โรคน่ารู้</a>
-                                </li>
-
-                                <li class="nav-item hover-underline-animation">
-                                    <a class="nav-link" id="nav_information" href="article_information?lang=<?php echo $lang?>">สาระสุขภาพ</a>
+                                    <a class="nav-link" id="nav_diseases" href="disease_information.php?lang=<?php echo $lang?>">โรคน่ารู้</a>
                                 </li>
 
                                 <li class="nav-item hover-underline-animation">
-                                    <a class="nav-link" id="nav_promotion" href="promotion?lang=<?php echo $lang?>">โปรโมชัน</a>
+                                    <a class="nav-link" id="nav_information" href="article_information.php?lang=<?php echo $lang?>">สาระสุขภาพ</a>
+                                </li>
+
+                                <li class="nav-item hover-underline-animation">
+                                    <a class="nav-link" id="nav_promotion" href="promotion.php?lang=<?php echo $lang?>">โปรโมชัน</a>
                                 </li>
                                 <li class="nav-item hover-underline-animation">
-                                    <a class="nav-link" id="nav_review" href="review?lang=<?php echo $lang?>">รีวิวสินค้า</a>
+                                    <a class="nav-link" id="nav_review" href="review.php?lang=<?php echo $lang?>">รีวิวสินค้า</a>
                                 </li>
                             </ul>
                         </div>

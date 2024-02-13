@@ -84,15 +84,19 @@ if (!empty($id_article)) {
         </div>
 
         <div class="carousel-inner">
-          <?php
-          $desired_language_id = $lang;
-          $i = 0;
-          // Ramdom
-          shuffle($article_case);
-          foreach ($article_case as $row) {
-            if ($row['lang'] == $desired_language_id) {
-              $actives = ($i == 0) ? 'active' : '';
-          ?>
+        <?php
+            if (isset($_GET['lang'])) {
+              $selectedLanguage = $_GET['lang'];
+            } else {
+              $selectedLanguage = 'th';
+            }
+            $desired_language_id = $lang;
+            $i = 0;
+            shuffle($article_case);
+            foreach ($article_case as $row) {
+              if ($row['lang'] == $selectedLanguage && $i < 5) { // Limit to 5 items
+                $actives = ($i == 0) ? 'active' : '';
+            ?>
               <div class="carousel-item <?php echo $actives; ?>">
                 <div class="row">
                   <div class="col-md-7">
@@ -102,8 +106,21 @@ if (!empty($id_article)) {
                     <div class="title" style="text-align: justify;">
                       <h3 class="card-title" style="color: black; text-align: center;"><?php echo $row['title']; ?></h3>
                       <p class="card-title" style="color: black; padding: 8px; text-align: justify; margin-right: 20px;"><?php echo $row['review_description']; ?></p>
-                      <a id="Read more" href="article_case.php?&tag=article_case&title=<?php echo $row['title']; ?>&tb=article_case&id=<?php echo $row['id']; ?>&lang=<?php echo $row['lang']; ?>" style="padding: 10px;">
-                          อ่านเพิ่มเติม
+                      <a id="Read more" href="article_case.php?&tag=article_case&title=<?php echo $row['title']; ?>&tb=article_case&id=<?php echo $row['id']; ?>" style="padding: 10px;">
+                          <?php
+                          if ($i == 0) {
+                            echo "อ่านเพิ่มเติม";
+                          }elseif ($selectedLanguage == 'th') {
+                            echo "อ่านเพิ่มเติม";
+                          } elseif ($selectedLanguage == 'en') {
+                            echo "Read more";
+                          } elseif ($selectedLanguage == 'cn') {
+                            echo "阅读更多";
+                          } elseif ($selectedLanguage == 'jap') {
+                            echo "続きを読む";
+                          }
+                          ?>
+
                         </a>
                     </div>
                   </div>
@@ -217,7 +234,7 @@ if (!empty($id_article)) {
             <div class="card-title">
               <br>
               <h5 class="card-title" style="color: black; padding: 0px 10px 0px 10px;"><?php echo $row['title']; ?></h5>
-              <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; padding: 0px 10px 0px 10px;">
+              <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; padding: 0px 10px 0px 10px;">
                 <?php echo $row['review_description']; ?>
               </p>
             </div>

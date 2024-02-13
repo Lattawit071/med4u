@@ -1,5 +1,5 @@
 <?php
-class dashboardConfig
+class DashboardConfig
 {
     private const DBHOST = "localhost";
     private const DBUSER = "root";
@@ -22,5 +22,4 @@ class dashboardConfig
         return $this->conn;
     }
 }
-
 ?>

@@ -1,6 +1,11 @@
 <?php
 require_once './config/db_conn.inc.php';
 require_once 'service/action.php';
+// // $id_disease = isset($_GET['id_disease']) ? $_GET['id_disease'] : null;
+// $sql = "SELECT * FROM disease_case";
+// if (!empty($id_disease)) {
+//   $sql .= " WHERE id_disease = :id_disease";
+// }
 ?>
 
 <!DOCTYPE html>
@@ -77,10 +82,10 @@ require_once 'service/action.php';
 
           <div class="carousel-inner">
             <?php
-            $desired_language_id = $lang;
+            $selectedLanguage = $lang;
             $i = 0;
             foreach ($disease_case as $row) {
-              if ($row['lang'] == $desired_language_id) {
+              if ($row['lang'] == $selectedLanguage) {
                 $actives = ($i == 0) ? 'active' : '';
             ?>
                 <div class="carousel-item <?php echo $actives; ?>">
@@ -92,8 +97,22 @@ require_once 'service/action.php';
                       <div class="title" style="justify-content: center;">
                         <h3 class="card-title" style="color: black; text-align: center;"><?php echo $row['title']; ?></h3>
                         <p class="card-title" style="color: black; padding: 8px; margin-right: 20px;"><?php echo $row['review_description']; ?></p>
-                        <a id="Read more" href="disease_case.php?&title=<?php echo $row['title'] ?>&id=<?php echo $row['id']; ?>&lang=<?php echo $row['lang']; ?>" style="padding: 10px;">
-                          อ่านเพิ่มเติม
+                        <a id="Read more" href="article_case.php?&tag=article_case&title=<?php echo $row['title']; ?>&tb=article_case&id=<?php echo $row['id']; ?>" style="padding: 10px;">
+                          <?php
+                          if ($i == 0) {
+                            echo "อ่านเพิ่มเติม";
+                          }elseif ($selectedLanguage == 'th') {
+                            echo "อ่านเพิ่มเติม";
+                          } elseif ($selectedLanguage == 'en') {
+                            echo "Read more";
+                          } elseif ($selectedLanguage == 'cn') {
+                            echo "阅读更多";
+                          } elseif ($selectedLanguage == 'jap') {
+                            echo "続きを読む";
+                          }
+                          ?>
+
+                        </a>
                         </a>
                       </div>
                     </div>

@@ -48,7 +48,7 @@ $title = $_GET['title'];
                     <p class="article_case-date"><?php echo $row['date_time']; ?></p>
                     <div class="article_case-content">
                         <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" class="d-block w-100 object-fit-cover">
-                        </a><br>
+                    <br>
                         <div class="article_case-details">
                             <p class="article_case-title"><?php echo $row['description']; ?></p>
                         </div>

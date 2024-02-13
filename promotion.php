@@ -1,8 +1,6 @@
 <?php
 require_once 'config/db_conn.inc.php';
 require_once 'service/action.php';
-include_once 'components/input_search.php';
-$components = new components;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +27,6 @@ $components = new components;
     }
 
     body {
-      font-size: 14px;
       color: #000;
       margin: 0;
       padding: 0;
@@ -109,17 +106,18 @@ $components = new components;
     </div>
   </div>
   <h2 id="hos" style="color: #044374; text-align: center; font-size: 48px;font-style: normal;font-weight: 600;line-height: normal;">โรงพยาบาลและคลินิก</h2>
-  <div class="container-fluid" style="background-image:url('./uploads/โปรโมชัน/bg_promotion.png'); height: 500px">
-    <div class="container justify-content-center align-items-center">
-      <!-- SEARCH BOX  -->
-      <!-- <?php echo $components->input_button_text_search('ค้นหาจากชื่อคลินิก หรือ โรงพยาบาล'); ?>
-
-      <div class="searchlist row text-alignt-center mt-3">
-        <div id="search-list" class="container row justify-content-center"></div>
-      </div> -->
-    </div>
+  <div class="container-fluid" style="background-image:url('./uploads/โปรโมชัน/bg_promotion.png'); height: 500px; display: flex; justify-content: center; align-items: center;">
+    <form action="#" method="POST" class="p-3" style="position: relative;">
+      <div class="search-box" style="width: 780px; height: 70px; position: relative;">
+        <input type="text" id="hospital-box" name="search" class="input-search" placeholder="ค้นหาชื่อโรงพยาบาลหรือคลีนิค" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <span class="fas fa-search" style="left: 720px;"></span>
+        </div>
+        <div id="hospitalList" class="autocomplete-items">
+        </div>
+      </div>
+    </form>
   </div>
-
   <div class="container">
     <h2 class="d-flex mt-5 pt-2" id="" style="color: #062E73; margin-bottom: 10px;">โปรโมชันแนะนำ</h2>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -214,6 +212,36 @@ $components = new components;
   <!-- Footer -->
   <?php include 'components/footer.php'; ?>
   <!-- Footer -->
+  <script type="text/javascript" src="./assets/js/jquery.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$("#hospital-box").keyup(function(){
+		var hospital = $(this).val();
+
+		if(hospital != ''){
+			$.ajax({
+				url: "load-hospital.php",
+				method: "POST",
+				data: {hospital: hospital},
+				success: function(data){
+					console.log(data);
+					$("#hospitalList").fadeIn("fast").html(data);
+				}
+			});
+		} else {
+			$("#hospitalList").fadeOut();
+		}
+	});
+
+	$(document).on('click','#hospitalList div',function(){
+		$('#hospital-box').val($(this).text());
+		$('#hospitalList').fadeOut();
+	});
+
+  });
+</script>
   <script src="./assets/js/scroll-top.js"></script>
   <script src="bootstrap-5.3.x/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/js/lang.js"></script>

@@ -166,17 +166,23 @@ function updateSelectedLanguageElement(lang) {
 }
 
 function saveSelectedLanguage(lang) {
-  localStorage.setItem('selectedLanguage', lang);
+  if (translations[lang]) {
+    localStorage.setItem('selectedLanguage', lang);
+  } else {
+    console.error('Invalid language:', lang);
+  }
 }
 
 function loadSelectedLanguage() {
   const savedLanguage = localStorage.getItem('selectedLanguage');
+  const defaultLanguage = 'th';
+
   if (savedLanguage && translations[savedLanguage]) {
     changeLanguage(savedLanguage);
   } else {
-    changeLanguage('TH');
+    changeLanguage(defaultLanguage);
+    saveSelectedLanguage(defaultLanguage);
   }
 }
-
 
 loadSelectedLanguage();
