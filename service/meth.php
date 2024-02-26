@@ -1,5 +1,5 @@
 <?php
-require_once 'config/db_conn.inc.php';
+// require_once '../config/db_conn.inc.php';
 
 class select_pre extends dashboardConfig
 {

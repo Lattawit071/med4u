@@ -106,7 +106,7 @@ if (!empty($id_article)) {
                     <div class="title" style="text-align: justify;">
                       <h3 class="card-title" style="color: black; text-align: center;"><?php echo $row['title']; ?></h3>
                       <p class="card-title" style="color: black; padding: 8px; text-align: justify; margin-right: 20px;"><?php echo $row['review_description']; ?></p>
-                      <a id="Read more" href="article_case.php?&tag=article_case&title=<?php echo $row['title']; ?>&tb=article_case&id=<?php echo $row['id']; ?>" style="padding: 10px;">
+                      <a id="Read more" href="article_case.php?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>" style="padding: 10px;">
                           <?php
                           if ($i == 0) {
                             echo "อ่านเพิ่มเติม";

@@ -1,6 +1,6 @@
 <?php
-require_once 'config/db_conn.inc.php';
-require_once 'service/action.php';
+require_once './config/db_conn.inc.php';
+require_once './service/action.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -153,7 +153,7 @@ require_once 'service/action.php';
             $i = 0;
             shuffle($article_case);
             foreach ($article_case as $row) {
-              if ($row['lang'] == $desired_language_id && $i < 5) { // Limit to 5 items
+              if ($row['lang'] == $desired_language_id && $i < 5) { 
                 $actives = ($i == 0) ? 'active' : '';
             ?>
                 <div class="carousel-item <?php echo $actives; ?>">

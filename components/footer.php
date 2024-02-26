@@ -26,4 +26,3 @@
 <div class="border-top text-center p-3" style="background-color:#1162A1">
     <p class="text-white text-center" style="margin:0 !important;">© 2022 Company, Inc</p>
 </div>
-</section>

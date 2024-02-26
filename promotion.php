@@ -107,9 +107,9 @@ require_once 'service/action.php';
   </div>
   <h2 id="hos" style="color: #044374; text-align: center; font-size: 48px;font-style: normal;font-weight: 600;line-height: normal;">โรงพยาบาลและคลินิก</h2>
   <div class="container-fluid" style="background-image:url('./uploads/โปรโมชัน/bg_promotion.png'); height: 500px; display: flex; justify-content: center; align-items: center;">
-    <form action="#" method="POST" class="p-3" style="position: relative;">
+    <form action="hospital_case.php" method="POST" class="p-3" style="position: relative;">
       <div class="search-box" style="width: 780px; height: 70px; position: relative;">
-        <input type="text" id="hospital-box" name="search" class="input-search" placeholder="ค้นหาชื่อโรงพยาบาลหรือคลีนิค" aria-describedby="button-addon2">
+        <input type="text" id="hospital-box" name="search" class="input-search" placeholder="ค้นหาชื่อโรงพยาบาลหรือคลินิค" aria-describedby="button-addon2">
         <div class="input-group-append">
             <span class="fas fa-search" style="left: 720px;"></span>
         </div>
@@ -134,7 +134,7 @@ require_once 'service/action.php';
         ?>
           <div class="carousel-item <?php echo $actives; ?>">
             <a href="promotion_case.php?&tag=promotion_case&promotion_case&id=<?php echo $row['id']; ?>">
-              <img src="uploads/โปรโมชัน/<?php echo $row['img']; ?>" class="rounded" style="object-fit: cover; width: 100%; border-radius: 10px;">
+              <img src="uploads/โปรโมชัน/<?php echo $row['img']; ?>"  style="object-fit: cover; width: 100%; height: 500px;">
             </a>
           </div>
         <?php
@@ -218,13 +218,13 @@ require_once 'service/action.php';
 	$(document).ready(function(){
 
 		$("#hospital-box").keyup(function(){
-		var hospital = $(this).val();
+		var hospital_case = $(this).val();
 
-		if(hospital != ''){
+		if(hospital_case != ''){
 			$.ajax({
 				url: "load-hospital.php",
 				method: "POST",
-				data: {hospital: hospital},
+				data: {hospital_case: hospital_case},
 				success: function(data){
 					console.log(data);
 					$("#hospitalList").fadeIn("fast").html(data);

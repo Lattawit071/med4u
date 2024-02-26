@@ -50,10 +50,10 @@ if (!empty($id_disease)) {
         <div class="container">
             <ul class="breadcrumbs">
                 <li class="breadcrumbs__item">
-                    <a href="index.php?lang=<?php echo $lang ?>" class="breadcrumbs__link">หน้าหลัก</a>
+                    <a href="index.php?lang=<?php echo $lang ?>" id="breadcrub_home" class="breadcrumbs__link">หน้าหลัก</a>
                 </li>
                 <li class="breadcrumbs__item">
-                    <a href="disease_information.php?lang=<?php echo $lang ?>" class="breadcrumbs__link">โรคน่ารู้</a>
+                    <a href="disease_information.php?lang=<?php echo $lang ?>" id="breadcrub_disease" class="breadcrumbs__link">โรคน่ารู้</a>
                 </li>
                 <li class="breadcrumbs__item">
                     <a href="" class="breadcrumbs__link"><?php echo $title ?></a>
@@ -61,6 +61,10 @@ if (!empty($id_disease)) {
             </ul>
         </div>
     </div>
+    <script>
+    var lang = '<?php echo $lang; ?>';
+    document.getElementById('breadcrub_home').innerText = translations['breadcrub_home'][lang];
+</script>
     <div class="container">
         <div class="row justify-content-center">
             <?php foreach ($disease_case as $row) {

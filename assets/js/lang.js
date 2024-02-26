@@ -28,7 +28,8 @@ const translations = {
     'Read more':'อ่านเพิ่มเติม',
     'Age 50+':'อายุ 50+',
     'Young age':'อายุน้อย',
-    'Popular':'ยอดนิยม'
+    'Popular':'ยอดนิยม',
+    'breadcrub_home': 'หน้าหลัก'
     
   },
   'EN':{
@@ -60,9 +61,8 @@ const translations = {
     'Read more':'Read more',
     'Age 50+':'Age 50+',
     'Young age':'Young age',
-    'Popular':'Popular'
-
-
+    'Popular':'Popular',
+    'breadcrub_home': 'Home'
   },
   'CN': {
     'nav_vaccine': '免费接种疫苗',
@@ -172,11 +172,12 @@ function saveSelectedLanguage(lang) {
     console.error('Invalid language:', lang);
   }
 }
-
+function clearSelectedLanguage() {
+  localStorage.removeItem('selectedLanguage');
+}
 function loadSelectedLanguage() {
   const savedLanguage = localStorage.getItem('selectedLanguage');
   const defaultLanguage = 'th';
-
   if (savedLanguage && translations[savedLanguage]) {
     changeLanguage(savedLanguage);
   } else {
@@ -184,5 +185,6 @@ function loadSelectedLanguage() {
     saveSelectedLanguage(defaultLanguage);
   }
 }
-
 loadSelectedLanguage();
+
+// window.addEventListener('beforeunload', clearSelectedLanguage);

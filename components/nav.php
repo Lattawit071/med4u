@@ -47,7 +47,7 @@ if (isset($_GET['lang'])) {
                                 </li>
 
                                 <li class="nav-item hover-underline-animation">
-                                    <a class="nav-link" id="nav_promotion" href="promotion.php?lang=<?php echo $lang?>">โปรโมชัน</a>
+                                    <a class="nav-link" id="nav_promotion" href="promotion.php?lang=<?php echo $lang?>">โรงพยาบาลและคลินิก</a>
                                 </li>
                                 <li class="nav-item hover-underline-animation">
                                     <a class="nav-link" id="nav_review" href="review.php?lang=<?php echo $lang?>">รีวิวสินค้า</a>
