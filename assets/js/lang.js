@@ -29,7 +29,10 @@ const translations = {
     'Age 50+':'อายุ 50+',
     'Young age':'อายุน้อย',
     'Popular':'ยอดนิยม',
-    'breadcrub_home': 'หน้าหลัก'
+    'breadcrub_home': 'หน้าหลัก',
+    'breadcrub_disease': 'โรคน่ารู้',
+    'breadcrub_article': 'สาระสุขภาพ'
+
     
   },
   'EN':{
@@ -62,7 +65,9 @@ const translations = {
     'Age 50+':'Age 50+',
     'Young age':'Young age',
     'Popular':'Popular',
-    'breadcrub_home': 'Home'
+    'breadcrub_home': 'Home',
+    'breadcrub_disease': 'Interesting Diseases',
+    'breadcrub_article': 'Health Tips'
   },
   'CN': {
     'nav_vaccine': '免费接种疫苗',
@@ -93,7 +98,10 @@ const translations = {
     'Read more':'阅读更多',
     'Age 50+':'年龄50+',
     'Young age':'年龄年轻',
-    'Popular':'流行'
+    'Popular':'流行',
+    'breadcrub_home': '主页',
+    'breadcrub_disease': '值得了解的疾病',
+    'breadcrub_article': '健康资讯'
   },
   'JAP':{
     'nav_vaccine': '無料の予防接種',
@@ -124,7 +132,11 @@ const translations = {
     'Age 50+':'年齢50+',
     'Young age':'年齢が若い',
     'Popular':'人気',
-    'article_title':'健康情報'
+    'article_title':'健康情報',
+    'breadcrub_home': '主页',
+    'breadcrub_disease': '知っておくべき病気。',
+    'breadcrub_article': '健康情報'
+
     
   }
 };

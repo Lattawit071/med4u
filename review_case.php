@@ -67,7 +67,7 @@ if (!empty($id_review)) {
 
     <!-- include component navbar -->
     <?php include 'components/nav.php'; ?>
-    <div class="way" style="width: 1400px; height: 40px; border-radius: 0px 100px 100px 0px; background: #044374;">
+    <div class="way" style="border-radius: 0px 100px 100px 0px; background: #044374;">
     <div class="container">
      <ul class="breadcrumbs">
       <li class="breadcrumbs__item">

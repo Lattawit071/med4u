@@ -17,6 +17,7 @@ require_once 'service/action.php';
   <link rel="stylesheet" href="assets/fontawesome-6.4.0/css/fontawesome.css">
   <link rel="stylesheet" href="assets/fontawesome-6.4.0/css/brands.css">
   <link rel="stylesheet" href="assets/fontawesome-6.4.0/css/solid.css">
+  <link rel="stylesheet" href="assets/style/respon_promotion.css">
   <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="assets/style/swiper-bundle.min.css">
   <style>
@@ -84,6 +85,7 @@ require_once 'service/action.php';
 
     .carousel-control-next-icon::before {
       content: '❯';
+
     }
   </style>
 </head>
@@ -93,7 +95,7 @@ require_once 'service/action.php';
   <?php include 'components/header.php'; ?>
   <!-- include component navbar -->
   <?php include 'components/nav.php'; ?>
-  <div class="way" style="width: 1400px; height: 40px; border-radius: 0px 100px 100px 0px; background: #044374;">
+  <div class="way" style="border-radius: 0px 100px 100px 0px; background: #044374;">
     <div class="container">
       <ul class="breadcrumbs">
         <li class="breadcrumbs__item">
@@ -105,13 +107,13 @@ require_once 'service/action.php';
       </ul>
     </div>
   </div>
-  <h2 id="hos" style="color: #044374; text-align: center; font-size: 48px;font-style: normal;font-weight: 600;line-height: normal;">โรงพยาบาลและคลินิก</h2>
+  <h2 id="hos">โรงพยาบาลและคลินิก</h2>
   <div class="container-fluid" style="background-image:url('./uploads/โปรโมชัน/bg_promotion.png'); height: 500px; display: flex; justify-content: center; align-items: center;">
     <form action="hospital_case.php" method="POST" class="p-3" style="position: relative;">
-      <div class="search-box" style="width: 780px; height: 70px; position: relative;">
+      <div class="search-box">
         <input type="text" id="hospital-box" name="search" class="input-search" placeholder="ค้นหาชื่อโรงพยาบาลหรือคลินิค" aria-describedby="button-addon2">
         <div class="input-group-append">
-            <span class="fas fa-search" style="left: 720px;"></span>
+          <span class="fas fa-search"></span>
         </div>
         <div id="hospitalList" class="autocomplete-items">
         </div>
@@ -120,41 +122,53 @@ require_once 'service/action.php';
   </div>
   <div class="container">
     <h2 class="d-flex mt-5 pt-2" id="" style="color: #062E73; margin-bottom: 10px;">โปรโมชันแนะนำ</h2>
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="height: 500px;">
+      <div class="carousel-indicators mt-2" style="bottom: 5px; position: absolute; left: 0; right: 0;">
+        <?php
+        for ($j = 0; $j < min(3, count($promotion)); $j++) {
+          $active = ($j == 0) ? 'active' : '';
+        ?>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<?php echo $j; ?>" class="<?php echo $active; ?>" aria-label="Slide <?php echo $j + 1; ?>"></button>
+        <?php
+        }
+        ?>
+
       </div>
-      <div class="carousel-inner" style="width: 1300px; height: 500px;">
+
+      <div class="carousel-inner" style="height: 500px;">
         <?php
         $i = 0;
         foreach ($promotion as $row) {
-          $actives = ($i == 0) ? 'active' : '';
+          if ($i < 3) {
+            $actives = ($i == 0) ? 'active' : '';
         ?>
-          <div class="carousel-item <?php echo $actives; ?>">
-            <a href="promotion_case.php?&tag=promotion_case&promotion_case&id=<?php echo $row['id']; ?>">
-              <img src="uploads/โปรโมชัน/<?php echo $row['img']; ?>"  style="object-fit: cover; width: 100%; height: 500px;">
-            </a>
-          </div>
+            <div class="carousel-item <?php echo $actives; ?>">
+              <a href="promotion_case.php?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>">
+                <img src="uploads/โปรโมชันโรงพยาบาล/<?php echo $row['img']; ?>" style="height: 500px;">
+              </a>
+            </div>
         <?php
-          $i++;
+            $i++;
+          }
         }
         ?>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+
+      <!-- Previous and Next controls -->
+      <div class="carousel-control-prev" role="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      </div>
+      <div class="carousel-control-next" role="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
-      </button>
+      </div>
+
     </div>
   </div>
 
   <div class="container">
-    <h2 class="d-flex  mt-1 pt-2" id="disease_title" style="color: #062E73;">โรงพยาบาลแนะนำ</h2>
+    <h2 class="d-flex mt-1 pt-2" id="disease_title" style="color: #062E73;">โรงพยาบาลแนะนำ</h2>
     <!-- Swiper -->
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
@@ -168,11 +182,11 @@ require_once 'service/action.php';
           if ($row['lang'] == $selectedLanguage) {
         ?>
             <div class="swiper-slide">
-              <div class="card" style="width: 500px;">
-                <img src="uploads/โปรโมชัน/<?php echo $row['img']; ?>" class="card-img-top" alt="..." style="width: 100%; height: 200px;">
+              <div class="card">
+                <img src="uploads/โปรโมชัน/<?php echo $row['img']; ?>" class="card-img-top" alt="logo_hos">
                 <div class="card-body">
                   <h5 class="card-title"><?php echo $row['name']; ?></h5>
-                  <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                  <p class="card-text">
                     <?php echo $row['description']; ?>
                   </p>
                 </div>
@@ -185,9 +199,10 @@ require_once 'service/action.php';
       </div>
       <div class="swiper-button-next swiper-navBtn"></div>
       <div class="swiper-button-prev swiper-navBtn"></div>
-      <!-- <div class="swiper-pagination"></div> -->
     </div>
   </div>
+
+
   </div>
   <div class="container">
     <h2 class="d-flex  mt-1 pt-2" id="disease_title" style="color:black;">คลินิคผิวหนังและเส้นผม</h2>
@@ -213,40 +228,43 @@ require_once 'service/action.php';
   <?php include 'components/footer.php'; ?>
   <!-- Footer -->
   <script type="text/javascript" src="./assets/js/jquery.js"></script>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-
-		$("#hospital-box").keyup(function(){
-		var hospital_case = $(this).val();
-
-		if(hospital_case != ''){
-			$.ajax({
-				url: "load-hospital.php",
-				method: "POST",
-				data: {hospital_case: hospital_case},
-				success: function(data){
-					console.log(data);
-					$("#hospitalList").fadeIn("fast").html(data);
-				}
-			});
-		} else {
-			$("#hospitalList").fadeOut();
-		}
-	});
-
-	$(document).on('click','#hospitalList div',function(){
-		$('#hospital-box').val($(this).text());
-		$('#hospitalList').fadeOut();
-	});
-
-  });
-</script>
   <script src="./assets/js/scroll-top.js"></script>
   <script src="bootstrap-5.3.x/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/js/lang.js"></script>
   <script src="assets/js/swiper-bundle.min.js"></script>
   <script src="assets/js/script_promo.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+      $("#hospital-box").keyup(function() {
+        var hospital_case = $(this).val();
+
+        if (hospital_case != '') {
+          $.ajax({
+            url: "load-hospital.php",
+            method: "POST",
+            data: {
+              hospital_case: hospital_case
+            },
+            success: function(data) {
+              console.log(data);
+              $("#hospitalList").fadeIn("fast").html(data);
+            }
+          });
+        } else {
+          $("#hospitalList").fadeOut();
+        }
+      });
+
+      $(document).on('click', '#hospitalList div', function() {
+        $('#hospital-box').val($(this).text());
+        $('#hospitalList').fadeOut();
+      });
+
+    });
+  </script>
+
 </body>
 
 </html>

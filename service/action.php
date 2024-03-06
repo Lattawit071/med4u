@@ -39,6 +39,8 @@ $promotion_case = $handler->table("promotion_case");
 $images_hospital = $handler->table("images_hospital");
 // image_small_hospital
 $image_small_hospital = $handler->table("image_small_hospital");
+// hp_outstand_treatment
+$hp_outstand_treatment =  $handler->table("hp_outstand_treatment");
 if (isset($_POST['readone'])) {
     if ($_POST['readone'] == null) {
         echo "something went wrong with tag";

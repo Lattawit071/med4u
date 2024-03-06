@@ -20,6 +20,7 @@ require_once 'service/action.php';
   <link rel="stylesheet" href="bootstrap-5.3.x/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/style/component.css">
   <link rel="stylesheet" href="assets/style/style.css">
+  <link rel="stylesheet" href="assets/style/respon_disease_infor.css">
   <style>
     .carousel-control-prev,
     .carousel-control-next {
@@ -31,7 +32,7 @@ require_once 'service/action.php';
 
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
-      background-color: #3498db;
+      background-color: #062E73;
       border-radius: 50%;
       padding: 20px;
       color: #fff;
@@ -55,95 +56,93 @@ require_once 'service/action.php';
   <?php include 'components/header.php'; ?>
   <?php include 'components/nav.php'; ?>
 
-  <div class="way" style="width: 1400px; height: 40px; border-radius: 0px 100px 100px 0px; background: #044374;">
+  <div class="way" style="border-radius: 0px 100px 100px 0px; background: #044374;">
     <div class="container">
-      <ul class="breadcrumbs">
-        <li class="breadcrumbs__item">
-          <a href="index.php?lang=<?php echo $lang ?>" class="breadcrumbs__link">หน้าหลัก</a>
-        </li>
-        <li class="breadcrumbs__item">
-          <a href="disease_information.php?lang=<?php echo $lang ?>" class="breadcrumbs__link">โรคน่ารู้</a>
-        </li>
-      </ul>
+        <ul class="breadcrumbs">
+            <li class="breadcrumbs__item">
+                <a href="index.php?lang=<?php echo $lang ?>" id="breadcrub_home" class="breadcrumbs__link">หน้าหลัก</a>
+            </li>
+            <li class="breadcrumbs__item">
+                <a href="disease_information.php?lang=<?php echo $lang ?>" id="breadcrub_disease" class="breadcrumbs__link">โรคน่ารู้</a>
+            </li>
+        </ul>
     </div>
-  </div>
+</div>
+<script>
+    var lang = '<?php echo $lang; ?>';
+    document.getElementById('breadcrub_home').innerText = translations['breadcrub_home'][lang];
+    document.getElementById('breadcrub_disease').innerText = translations['breadcrub_disease'][lang];
+</script>
   <h2 id="disease_title" style="color: #044374; text-align: center; font-size: 48px;font-style: normal;font-weight: 600;line-height: normal;">โรคน่ารู้</h2>
-  <div class="container-fuild mt-3 mb-3" style="background-color: #044374; position: relative;">
-    <div class="container mt-2 mb-2 p-4">
-      <div class="card mx-auto" style="width: 1200px; height: 360px; margin: 10px; border-radius:10px; position: relative;">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators" style="bottom: 10px; position: absolute; left: 0; right: 0;">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-          </div>
+  <div class="mt-3 mb-3" id="banner_title" style="background-color: #044374; position: relative;">
+  <div class="container mt-2 mb-2 p-4">
+    <div class="disease_infor_banner mx-auto" style="max-width: 1200px; max-height: 360px; margin: 10px; position: relative; background-color: #fff;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators" style="bottom: 10px; position: absolute; left: 0; right: 0;">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        </div>
 
-          <div class="carousel-inner">
-            <?php
-            $selectedLanguage = $lang;
-            $i = 0;
-            foreach ($disease_case as $row) {
-              if ($row['lang'] == $selectedLanguage) {
-                $actives = ($i == 0) ? 'active' : '';
-            ?>
-                <div class="carousel-item <?php echo $actives; ?>">
-                  <div class="row">
-                    <div class="col-md-7">
-                      <img src="uploads/รูปประกอบโรค/<?php echo $row['img']; ?>" class="rounded" style="object-fit: cover; width: 100%; height: 360px; border-radius: 10px;">
-                    </div>
-                    <div class="col-md-5 d-flex mt-5">
-                      <div class="title" style="justify-content: center;">
-                        <h3 class="card-title" style="color: black; text-align: center;"><?php echo $row['title']; ?></h3>
-                        <p class="card-title" style="color: black; padding: 8px; margin-right: 20px;"><?php echo $row['review_description']; ?></p>
-                        <a id="Read more" href="disease_case.php?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>" style="padding: 10px;">
-                          <?php
-                          if ($i == 0) {
-                            echo "อ่านเพิ่มเติม";
-                          }elseif ($selectedLanguage == 'th') {
-                            echo "อ่านเพิ่มเติม";
-                          } elseif ($selectedLanguage == 'en') {
-                            echo "Read more";
-                          } elseif ($selectedLanguage == 'cn') {
-                            echo "阅读更多";
-                          } elseif ($selectedLanguage == 'jap') {
-                            echo "続きを読む";
-                          }
-                          ?>
-
-                        </a>
-                        </a>
-                      </div>
+        <div class="carousel-inner">
+          <?php
+          $selectedLanguage = $lang;
+          $i = 0;
+          foreach ($disease_case as $row) {
+            if ($row['lang'] == $selectedLanguage && $i < 5) { 
+              $actives = ($i == 0) ? 'active' : '';
+          ?>
+              <div class="carousel-item <?php echo $actives; ?>">
+                <div class="row">
+                  <div class="col-md-7">
+                    <a href="disease_case.php?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>">
+                    <img src="uploads/รูปประกอบโรค/<?php echo $row['img']; ?>" style="object-fit: cover; width: 100%; height: 360px;">
+                  </a>
+                  </div>
+                  <div class="col-md-5 d-flex mt-5">
+                    <div class="title" style="justify-content: center;">
+                      <h3 class="card-title" style="color: black; text-align: center;"><?php echo $row['title']; ?></h3>
+                      <p class="card-title" style="color: black; padding: 8px; margin-right: 20px;"><?php echo $row['review_description']; ?></p>
+                      <a id="Read more" href="disease_case.php?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>" style="padding: 10px;">
+                        <?php
+                        if ($i == 0) {
+                          echo "อ่านเพิ่มเติม";
+                        } elseif ($selectedLanguage == 'th') {
+                          echo "อ่านเพิ่มเติม";
+                        } elseif ($selectedLanguage == 'en') {
+                          echo "Read more";
+                        } elseif ($selectedLanguage == 'cn') {
+                          echo "阅读更多";
+                        } elseif ($selectedLanguage == 'jap') {
+                          echo "続きを読む";
+                        }
+                        ?>
+                      </a>
                     </div>
                   </div>
                 </div>
-            <?php
-                $i++;
-              }
+              </div>
+          <?php
+              $i++;
             }
-            ?>
-          </div>
-
-
-          <!-- ปุ่มกดซ้ายขวา -->
-          <div class="carousel-control-prev" role="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </div>
-          <div class="carousel-control-next" role="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </div>
+          }
+          ?>
+        </div>
+    <!-- ปุ่มกดซ้ายขวา -->
+    <div class="carousel-control-prev" role="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </div>
+        <div class="carousel-control-next" role="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
         </div>
       </div>
     </div>
   </div>
-
-
-
-
-
+</div>
 
   <div class="container text-center">
     <div class="btn-group">
@@ -180,7 +179,7 @@ require_once 'service/action.php';
               document.getElementById('categoryBtn').innerText = '皮肤和头发';
             } else if (lang === 'jap') {
               document.getElementById('categoryBtn').innerText = '皮膚と髪';
-            } else if (lang === 'uae') {
+            } else if (lang === 'ar') {
               document.getElementById('categoryBtn').innerText = 'الجلد والشعر';
             }
           } else if (idDisease === '2') {
@@ -192,7 +191,7 @@ require_once 'service/action.php';
               document.getElementById('categoryBtn').innerText = '眼睛';
             } else if (lang === 'jap') {
               document.getElementById('categoryBtn').innerText = '目';
-            } else if (lang === 'uae') {
+            } else if (lang === 'ar') {
               document.getElementById('categoryBtn').innerText = 'عيون';
             }
           } else if (idDisease === '3') {
@@ -204,7 +203,7 @@ require_once 'service/action.php';
               document.getElementById('categoryBtn').innerText = '脑';
             } else if (lang === 'jap') {
               document.getElementById('categoryBtn').innerText = '脳';
-            } else if (lang === 'uae') {
+            } else if (lang === 'ar') {
               document.getElementById('categoryBtn').innerText = 'دماغ';
             }
           } else if (idDisease === '4') {
@@ -216,7 +215,7 @@ require_once 'service/action.php';
               document.getElementById('categoryBtn').innerText = '颈部';
             } else if (lang === 'jap') {
               document.getElementById('categoryBtn').innerText = '首';
-            } else if (lang === 'uae') {
+            } else if (lang === 'ar') {
               document.getElementById('categoryBtn').innerText = 'عنق';
             }
           } else if (idDisease === '5') {
@@ -228,7 +227,7 @@ require_once 'service/action.php';
               document.getElementById('categoryBtn').innerText = '孕育 ';
             } else if (lang === 'jap') {
               document.getElementById('categoryBtn').innerText = '妊娠';
-            } else if (lang === 'uae') {
+            } else if (lang === 'ar') {
               document.getElementById('categoryBtn').innerText = 'حمل';
             }
           } else if (idDisease === '6') {
@@ -240,7 +239,7 @@ require_once 'service/action.php';
               document.getElementById('categoryBtn').innerText = '肠道';
             } else if (lang === 'jap') {
               document.getElementById('categoryBtn').innerText = '腸';
-            } else if (lang === 'uae') {
+            } else if (lang === 'ar') {
               document.getElementById('categoryBtn').innerText = 'أمعاء';
             }
           } else if (idDisease === '7') {
@@ -252,7 +251,7 @@ require_once 'service/action.php';
               document.getElementById('categoryBtn').innerText = '关节';
             } else if (lang === 'jap') {
               document.getElementById('categoryBtn').innerText = '関節';
-            } else if (lang === 'uae') {
+            } else if (lang === 'ar') {
               document.getElementById('categoryBtn').innerText = 'مفصل';
             }
           } else if (idDisease === '8') {
@@ -264,7 +263,7 @@ require_once 'service/action.php';
               document.getElementById('categoryBtn').innerText = '嘴巴 ';
             } else if (lang === 'jap') {
               document.getElementById('categoryBtn').innerText = '口';
-            } else if (lang === 'uae') {
+            } else if (lang === 'ar') {
               document.getElementById('categoryBtn').innerText = 'فم';
             }
           }
@@ -272,7 +271,7 @@ require_once 'service/action.php';
       };
     </script>
   </div>
-  <div class="container">
+  <div class="container mt-3">
     <div class="row justify-content-center">
       <?php
       $selectedCategory = isset($_GET['id_disease']) ? $_GET['id_disease'] : null;
@@ -296,10 +295,10 @@ require_once 'service/action.php';
 
       foreach (array_slice($filteredCases, $startIndex, $itemsPerPage) as $row) {
       ?>
-        <div class="rounded-element-disease_case" style="width: 380px; padding-bottom: 10px;">
+        <div class="rounded-element-disease_case" style="padding-bottom: 10px;">
           <div class="card-body">
             <a href="disease_case.php?&tag=disease_case&title=<?php echo urlencode($row['title']); ?>&tb=disease_case&id=<?php echo $row['id']; ?>&lang=<?php echo $lang; ?>">
-              <img src="uploads/รูปประกอบโรค/<?php echo $row['img']; ?>" class="rounded" style="width: 380px; height: 230px;">
+              <img src="uploads/รูปประกอบโรค/<?php echo $row['img']; ?>" class="rounded">
             </a>
 
             <div class="card-title">

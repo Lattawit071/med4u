@@ -1,14 +1,38 @@
 <?php
 require_once 'config/db_conn.inc.php';
 require_once 'service/action.php';
+
 $id = $_GET['id'];
 $title = urldecode($_GET['title']);
 $id_disease = isset($_GET['id_disease']) ? $_GET['id_disease'] : null;
-$sql = "SELECT * FROM disease_case";
-if (!empty($id_disease)) {
-    $sql .= " WHERE id_disease = :id_disease";
+
+$dbConfig = new DashboardConfig();
+$conn = $dbConfig->getConnection();
+
+// ดึงข้อมูลโรคที่มี id ตรงกับที่ระบุใน URL
+$sql = "SELECT * FROM disease_case WHERE id = :id";
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($result) {
+    // เพิ่มจำนวนผู้เข้าชม
+    $updatedViews = $result['view'] + 1;
+
+    // อัปเดตจำนวนผู้เข้าชมในตาราง disease_case ที่มี id ตรงกับที่ระบุใน URL
+    $updateSql = "UPDATE disease_case SET view = :view WHERE id = :id";
+    $updateStmt = $conn->prepare($updateSql);
+    $updateStmt->bindParam(':view', $updatedViews, PDO::PARAM_INT);
+    $updateStmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $updateStmt->execute();
+} else {
+    // ไม่พบข้อมูลที่ตรงกับ id ที่ระบุ
 }
+
+$stmt->closeCursor();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,8 +70,8 @@ if (!empty($id_disease)) {
 
     <!-- include component navbar -->
     <?php include 'components/nav.php'; ?>
-    <div class="way" style="width: 1400px; height: 40px; border-radius: 0px 100px 100px 0px; background: #044374; margin-bottom: 5px;">
-        <div class="container">
+    <div class="way" style="border-radius: 0px 100px 100px 0px; background: #044374;">
+    <div class="container">
             <ul class="breadcrumbs">
                 <li class="breadcrumbs__item">
                     <a href="index.php?lang=<?php echo $lang ?>" id="breadcrub_home" class="breadcrumbs__link">หน้าหลัก</a>
@@ -64,26 +88,33 @@ if (!empty($id_disease)) {
     <script>
     var lang = '<?php echo $lang; ?>';
     document.getElementById('breadcrub_home').innerText = translations['breadcrub_home'][lang];
+    document.getElementById('breadcrub_disease').innerText = translations['breadcrub_disease'][lang];
 </script>
-    <div class="container">
-        <div class="row justify-content-center">
-            <?php foreach ($disease_case as $row) {
-                $disease_case = $id;
-                if ($row['id'] == $disease_case) { ?>
+<div class="container">
+    <div class="row justify-content-center">
+        <?php foreach ($disease_case as $row) {
+            $disease_case = $id;
+            if ($row['id'] == $disease_case) { ?>
+                <div class="col-lg-12 col-md-10 col-sm-12">
                     <h1 class="disease_case"><?php echo $row['title']; ?></h1>
-                    <p class="disease_case-date"><?php echo $row['date_time']; ?></p>
+                    <div class="display" style="display: flex; flex-wrap: wrap; font-size: 18px;">
+                    <p class="disease_case-count" id="visit_count" style="margin-right: 5px;"><?php echo $row['view'] ?> จำนวนผู้เข้าชม |</p>
+                    <p class="disease_case-date"><?php echo date('d/m/Y', strtotime($row['date_time'])); ?></p>
+                </div>
                     <div class="disease_case-content">
-                        <img src="uploads/รูปประกอบโรค/<?php echo $row['img']; ?>" class="d-block w-100 object-fit-cover" loading="lazy">
+                        <img src="uploads/รูปประกอบโรค/<?php echo $row['img']; ?>" class="img-fluid" loading="lazy">
                         <br>
                         <div class="disease_case-details">
                             <p class="disease_case-title"><?php echo $row['description']; ?></p>
                             <!-- <a href="<?php echo $row['link']; ?>">แหล่งที่มา</a> -->
                         </div>
                     </div>
-            <?php }
-            } ?>
-        </div>
+                </div>
+        <?php }
+        } ?>
     </div>
+</div>
+
 
     <!-- ปุ่ม Top scroll -->
     <div id="scroll-top" onclick="scrollToTOP()">

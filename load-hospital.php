@@ -4,7 +4,7 @@ include './config/db_conn.inc.php';
 
 <script>
 function redirectToHospitalCase(name, id) {
-    window.open(`hospital_case.php?name=${name}&hospital_id=${id}`, '_blank');
+    window.location.href = `hospital_case.php?name=${name}&hospital_id=${id}`;
 }
 </script>
 

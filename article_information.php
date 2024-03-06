@@ -20,6 +20,7 @@ if (!empty($id_article)) {
   <link rel="stylesheet" href="bootstrap-5.3.x/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/style/component.css">
   <link rel="stylesheet" href="assets/style/style.css">
+  <link rel="stylesheet" href="assets/style/respon_article.css">
   <style>
     .carousel-control-prev,
     .carousel-control-next {
@@ -31,13 +32,10 @@ if (!empty($id_article)) {
 
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
-      background-color: #3498db;
-      /* สีพื้นหลังของปุ่ม */
+      background-color: #062E73;
       border-radius: 50%;
       padding: 20px;
-      /* ขนาดของไอคอน */
       color: #fff;
-      /* สีของไอคอน */
     }
 
     .carousel-control-prev {
@@ -57,23 +55,27 @@ if (!empty($id_article)) {
   <!-- include component header -->
   <?php include 'components/header.php'; ?>
   <?php include 'components/nav.php'; ?>
-  <div class="way" style="width: 1400px; height: 40px; border-radius: 0px 100px 100px 0px; background: #044374;">
+  <div class="way" style="border-radius: 0px 100px 100px 0px; background: #044374;">
     <div class="container">
      <ul class="breadcrumbs">
       <li class="breadcrumbs__item">
-        <a href="index.php?lang=<?php echo $lang?>" class="breadcrumbs__link">หน้าหลัก</a>
+        <a href="index.php?lang=<?php echo $lang?>" id="breadcrub_home" class="breadcrumbs__link">หน้าหลัก</a>
       </li>
       <li class="breadcrumbs__item">
-        <a href="article_information.php?lang=<?php echo $lang?>" class="breadcrumbs__link">สาระสุขภาพ</a>
+        <a href="article_information.php?lang=<?php echo $lang?>" id="breadcrub_article" class="breadcrumbs__link">สาระสุขภาพ</a>
       </li>
      </ul>
     </div>
   </div>
-
+  <script>
+    var lang = '<?php echo $lang; ?>';
+    document.getElementById('breadcrub_home').innerText = translations['breadcrub_home'][lang];
+    document.getElementById('breadcrub_article').innerText = translations['breadcrub_article'][lang];
+</script>
   <h2 id="article_title" style="color: #044374; text-align: center; font-size: 48px;font-style: normal;font-weight: 600;line-height: normal;">สาระสุขภาพ</h2>
   <div class="container-fuild mt-3 mb-3" style="background-color: #044374; position: relative;">
   <div class="container mt-2 mb-2 p-4">
-    <div class="card mx-auto" style="width: 1200px; height: 360px; margin: 10px; border-radius:10px; position: relative;">
+    <div class="mx-auto" style="max-width: 1200px; max-height: 360px; margin: 10px; position: relative; background-color: #fff;">
       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators" style="bottom: 10px; position: absolute; left: 0; right: 0;">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -100,7 +102,7 @@ if (!empty($id_article)) {
               <div class="carousel-item <?php echo $actives; ?>">
                 <div class="row">
                   <div class="col-md-7">
-                    <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" class="rounded" style="object-fit: cover; width: 100%; height: 360px; border-radius: 10px;">
+                    <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" style="object-fit: cover; width: 100%; height: 360px;">
                   </div>
                   <div class="col-md-5 d-flex mt-5">
                     <div class="title" style="text-align: justify;">
@@ -201,7 +203,7 @@ if (!empty($id_article)) {
 </script>
 
   </div>
-  <div class="container">
+  <div class="container mt-3">
     <div class="row justify-content-center">
       <?php
       $selectedCategory = isset($_GET['id_article']) ? $_GET['id_article'] : null;
@@ -225,12 +227,11 @@ if (!empty($id_article)) {
 
       foreach (array_slice($filteredCases, $startIndex, $itemsPerPage) as $row) {
       ?>
-         <div class="rounded-element-disease_case" style="width: 380px; padding-bottom: 10px;">
+         <div class="rounded-element-disease_case">
           <div class="card-body">
             <a href="article_case.php?&tag=article_case&title=<?php echo urlencode($row['title']); ?>&tb=article_case&id=<?php echo $row['id']; ?>&lang=<?php echo $lang; ?>">
-              <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" class="rounded" style="width: 380px; height: 230px;">
+              <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" class="rounded">
             </a>
-
             <div class="card-title">
               <br>
               <h5 class="card-title" style="color: black; padding: 0px 10px 0px 10px;"><?php echo $row['title']; ?></h5>

@@ -14,7 +14,7 @@ require_once './service/action.php';
   <link rel="stylesheet" href="bootstrap-5.3.x/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/style/component.css">
   <link rel="stylesheet" href="assets/style/style.css">
-
+  <link rel="stylesheet" href="assets/style/respon_index.css">
 </head>
 
 <body>
@@ -22,121 +22,160 @@ require_once './service/action.php';
   <?php include 'components/header.php'; ?>
   <!-- include component navbar -->
   <?php include 'components/nav.php'; ?>
-  <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2000">
-    <div class="carousel-inner">
+  <div class="container">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="height: 500px;">
+    <div class="carousel-indicators mt-2" style="bottom: 5px; position: absolute; left: 0; right: 0;">
       <?php
-      // กำหนด class active สำหรับเรียกรูปมาแสดง
-      $i = 0;
-      foreach ($carousel as $row) {
-        $actives = ($i == 0) ? 'active' : '';
+      for ($j = 0; $j < min(3, count($promotion)); $j++) {
+        $active = ($j == 0) ? 'active' : '';
       ?>
-        <div class="carousel-item <?php echo $actives; ?>">
-          <div class="overlay-image">
-            <img src="uploads/Coverphoto/<?php echo $row['img']; ?>" class="d-block w-100 object-fit-cover">
-          </div>
-        </div>
-
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<?php echo $j; ?>" class="<?php echo $active; ?>" aria-label="Slide <?php echo $j + 1; ?>"></button>
       <?php
-        $i++;
+      }
+      ?>
+
+    </div>
+
+    <div class="carousel-inner" style="height: 500px;">
+      <?php
+      $i = 0;
+      foreach ($promotion as $row) {
+        if ($i < 3) {
+          $actives = ($i == 0) ? 'active' : '';
+      ?>
+          <div class="carousel-item <?php echo $actives; ?>">
+            <a href="promotion_case.php?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>">
+            <img src="uploads/โปรโมชันโรงพยาบาล/<?php echo $row['img']; ?>" style="height: 500px;">
+            </a>
+          </div>
+      <?php
+          $i++;
+        }
       }
       ?>
     </div>
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <!-- Previous and Next controls -->
+    <div class="carousel-control-prev" role="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    </div>
+    <div class="carousel-control-next" role="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
-    </button>
+    </div>
 
   </div>
+</div>
 
-  <!-- disease -->
-  <div class="container-fluid" style="background-image:url('./uploads/disease_logo/disease_bg.png')">
-    <div class="p-md-5 text-light justify-content-center align-items-center">
-      <h2 class="d-flex justify-content-center mt-1 pt-2" id="disease_title" style="color:#FFFFFF;">โรคน่ารู้</h2>
-      <div class="container">
-        <div class="row text-align-center">
-          <div class="col-lg-3 mb-5 mt-4 d-flex flex-column justify-content-center align-items-center">
-            <div class="rounded-element mb-4">
-              <a href="disease_information.php?&id_disease=1&lang=<?php echo $lang; ?>">
-                <img src="uploads/disease_logo/ผม.jpg" id="img-rounded-drugs">
-              </a>
-            </div>
-            <p class="d-flex flex-wrap fs-4 fw-semibold" id="Skin and hair">ผิวหนังและเส้นผม</p>
+
+
+<div class="container">
+  <div class="p-md-5 text-light justify-content-center align-items-center">
+    <h2 class="d-flex justify-content-center mt-1 pt-2" id="disease_title" style="color:#062E73;">โรคน่ารู้</h2>
+    <div class="container">
+      <div class="row text-align-center">
+
+        <!-- Disease 1 -->
+        <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
+          <div class="rounded-element mb-2">
+            <a href="disease_information.php?&id_disease=1&lang=<?php echo $lang; ?>">
+              <img src="uploads/disease_logo/ผม.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
+            </a>
           </div>
-          <div class="col-lg-3 mb-5 mt-4 d-flex flex-column justify-content-center align-items-center">
-            <div class="rounded-element mb-4">
-              <a href="disease_information.php?&id_disease=2&lang=<?php echo $lang; ?>">
-                <img src="uploads/disease_logo/ตา.jpg" id="img-rounded-drugs">
-              </a>
-            </div>
-            <p class="d-flex flex-wrap fs-4 fw-semibold" id="Eyes">ตา</p>
+          <p class="d-flex flex-wrap fs-5 fw-semibold" id="Skin and hair" style="color: #062E73;">ผิวหนังและเส้นผม</p>
+        </div>
+
+        <!-- Disease 2 -->
+        <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
+          <div class="rounded-element mb-2">
+            <a href="disease_information.php?&id_disease=2&lang=<?php echo $lang; ?>">
+              <img src="uploads/disease_logo/ตา.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
+            </a>
           </div>
-          <div class="col-lg-3 mb-5 mt-4 d-flex flex-column justify-content-center align-items-center">
-            <div class="rounded-element mb-4">
-              <a href="disease_information.php?&id_disease=3&lang=<?php echo $lang; ?>">
-                <img src="uploads/disease_logo/สมอง.jpg" id="img-rounded-drugs">
-              </a>
-            </div>
-            <p class="d-flex flex-wrap fs-4 fw-semibold" id="Brain">สมอง</p>
+          <p class="d-flex flex-wrap fs-5 fw-semibold" id="Eyes" style="color: #062E73;">ตา</p>
+        </div>
+
+        <!-- Disease 3 -->
+        <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
+          <div class="rounded-element mb-2">
+            <a href="disease_information.php?&id_disease=3&lang=<?php echo $lang; ?>">
+              <img src="uploads/disease_logo/สมอง.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
+            </a>
           </div>
-          <div class="col-lg-3 mb-5 mt-4 d-flex flex-column justify-content-center align-items-center">
-            <div class="rounded-element mb-4">
-              <a href="disease_information.php?&id_disease=4&lang=<?php echo $lang; ?>">
-                <img src="uploads/disease_logo/ลำคอ.jpg" id="img-rounded-drugs">
-              </a>
-            </div>
-            <p class="d-flex flex-wrap fs-4 fw-semibold" id="Throat">ลำคอ</p>
+          <p class="d-flex flex-wrap fs-5 fw-semibold" id="Brain" style="color: #062E73;">สมอง</p>
+        </div>
+
+        <!-- Disease 4 -->
+        <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
+          <div class="rounded-element mb-2">
+            <a href="disease_information.php?&id_disease=4&lang=<?php echo $lang; ?>">
+              <img src="uploads/disease_logo/ลำคอ.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
+            </a>
           </div>
-          <div class="col-lg-3 mb-5 mt-4 d-flex flex-column justify-content-center align-items-center">
-            <div class="rounded-element mb-4">
-              <a href="disease_information.php?&id_disease=5&lang=<?php echo $lang; ?>">
-                <img src="uploads/disease_logo/สูติ.jpg" id="img-rounded-drugs">
-              </a>
-            </div>
-            <p class="d-flex flex-wrap fs-4 fw-semibold" id="Obstetrics">สูติ</p>
+          <p class="d-flex flex-wrap fs-5 fw-semibold" id="Throat" style="color: #062E73;">ลำคอ</p>
+        </div>
+
+        <!-- Disease 5 -->
+        <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
+          <div class="rounded-element mb-2">
+            <a href="disease_information.php?&id_disease=5&lang=<?php echo $lang; ?>">
+              <img src="uploads/disease_logo/สูติ.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
+            </a>
           </div>
-          <div class="col-lg-3 mb-5 mt-4 d-flex flex-column justify-content-center align-items-center">
-            <div class="rounded-element mb-4">
-              <a href="disease_information.php?&id_disease=6&lang=<?php echo $lang; ?>">
-                <img src="uploads/disease_logo/ลำไส้.jpg" id="img-rounded-drugs">
-              </a>
-            </div>
-            <p class="d-flex flex-wrap fs-4 fw-semibold" id="Intestine">ลำไส้</p>
+          <p class="d-flex flex-wrap fs-5 fw-semibold" id="Obstetrics" style="color: #062E73;">สูติ</p>
+        </div>
+
+        <!-- Disease 6 -->
+        <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
+          <div class="rounded-element mb-2">
+            <a href="disease_information.php?&id_disease=6&lang=<?php echo $lang; ?>">
+              <img src="uploads/disease_logo/ลำไส้.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
+            </a>
           </div>
-          <div class="col-lg-3 mb-5 mt-4 d-flex flex-column justify-content-center align-items-center">
-            <div class="rounded-element mb-4">
-              <a href="disease_information.php?&id_disease=7&lang=<?php echo $lang; ?>">
-                <img src="uploads/disease_logo/ข้อต่อ.jpg" id="img-rounded-drugs">
-              </a>
-            </div>
-            <p class="d-flex flex-wrap fs-4 fw-semibold" id="Joints">ข้อ</p>
+          <p class="d-flex flex-wrap fs-5 fw-semibold" id="Intestine" style="color: #062E73;">ลำไส้</p>
+        </div>
+
+        <!-- Disease 7 -->
+        <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
+          <div class="rounded-element mb-2">
+            <a href="disease_information.php?&id_disease=7&lang=<?php echo $lang; ?>">
+              <img src="uploads/disease_logo/ข้อต่อ.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
+            </a>
           </div>
-          <div class="col-lg-3 mb-5 mt-4 d-flex flex-column justify-content-center align-items-center">
-            <div class="rounded-element mb-4">
-              <a href="disease_information.php?&id_disease=8&lang=<?php echo $lang; ?>">
-                <img src="uploads/disease_logo/ช่องปาก.jpg" id="img-rounded-drugs">
-              </a>
-            </div>
-            <p class="d-flex flex-wrap fs-4 fw-semibold" id="Mouth">ช่องปาก</p>
+          <p class="d-flex flex-wrap fs-5 fw-semibold" id="Joints" style="color: #062E73;">ข้อ</p>
+        </div>
+
+        <!-- Disease 8 -->
+        <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
+          <div class="rounded-element mb-2">
+            <a href="disease_information.php?&id_disease=8&lang=<?php echo $lang; ?>">
+              <img src="uploads/disease_logo/ช่องปาก.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
+            </a>
           </div>
+          <p class="d-flex flex-wrap fs-5 fw-semibold" id="Mouth" style="color: #062E73;">ช่องปาก</p>
         </div>
 
       </div>
     </div>
+  </div>
+</div>
+
+  <div class="container-fluid" style="background-image:url('./uploads/disease_logo/disease_bg.png')">
     <div class="container">
-      <h2 class="d-flex mt-1 pt-3" id="article_title" style="color:#FFFFFF;">สาระสุขภาพ</h2>
-      <div class="card" style="width: 1250px; height: 340px; position: relative;">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators mt-2" style="bottom: 35px; position: absolute; left: 0; right: 0;">
+      <div class="head-article" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0px 20px 0px;">
+        <h2 class="d-flex" id="article_title" style="color:#FFFFFF; margin-right: 10px;">สาระสุขภาพ</h2>
+        <a id="All" href="article_information.php?lang=<?php echo $lang ?>" style="text-decoration: none; color: #fff; font-size: 18px; right: 20px;">ดูทั้งหมด</a>
+      </div>
+
+      <div class="card2" style="width: 100%; height: 400px; position: relative; background-color: #FFF;">
+        <div id="carouselExampleIndicators1" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators mt-2" style="bottom: -25px; position: absolute; left: 0; right: 0;">
             <?php
-            for ($j = 0; $j < min(5, count($article_case)); $j++) {
+            for ($j = 0; $j < min(3, count($article_case)); $j++) {
               $active = ($j == 0) ? 'active' : '';
             ?>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<?php echo $j; ?>" class="<?php echo $active; ?>" aria-label="Slide <?php echo $j + 1; ?>"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="<?php echo $j; ?>" class="<?php echo $active; ?>" aria-label="Slide <?php echo $j + 1; ?>"></button>
             <?php
             }
             ?>
@@ -153,13 +192,15 @@ require_once './service/action.php';
             $i = 0;
             shuffle($article_case);
             foreach ($article_case as $row) {
-              if ($row['lang'] == $desired_language_id && $i < 5) { 
+              if ($row['lang'] == $desired_language_id && $i < 3) {
                 $actives = ($i == 0) ? 'active' : '';
             ?>
                 <div class="carousel-item <?php echo $actives; ?>">
                   <div class="row">
                     <div class="col-md-7">
-                      <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" class="rounded" style="object-fit: cover; width: 100%; height: 340px;">
+                      <a href="article_case.php?&tag=article_case&title=<?php echo $row['title']; ?>&tb=article_case&id=<?php echo $row['id']; ?>">
+                      <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" style="object-fit: cover; width: 100%; height: 400px;">
+                      </a>
                     </div>
                     <div class="col-md-5 d-flex mt-5">
                       <div class="title" style="max-width: 500px;">
@@ -169,7 +210,7 @@ require_once './service/action.php';
                           <?php
                           if ($i == 0) {
                             echo "อ่านเพิ่มเติม";
-                          }elseif ($selectedLanguage == 'th') {
+                          } elseif ($selectedLanguage == 'th') {
                             echo "อ่านเพิ่มเติม";
                           } elseif ($selectedLanguage == 'en') {
                             echo "Read more";
@@ -194,23 +235,22 @@ require_once './service/action.php';
           </div>
 
           <!-- Previous control -->
-          <div class="carousel-control-prev" role="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="width: auto; background: transparent; border: none; font-size: 2rem; margin-left: -50px; margin-top: -50px; position: absolute; top: 50%; transform: translateY(-50%);">
-            <span class="carousel-control-prev-icon" aria-hidden="true" style="border-radius: 50%; padding: 20px; color: #fff;"></span>
+          <div class="carousel-control-prev" role="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev" style="width: auto; background: transparent; border: none; font-size: 2rem; margin-left: -50px; margin-top: -50px; position: absolute; top: 50%; transform: translateY(-50%);">
+            <span class="carousel-control-prev-icon" aria-hidden="true" style="border-radius: 50%; padding: 20px; color: #fff; margin-top: 100px;"></span>
             <span class="visually-hidden">Previous</span>
           </div>
 
           <!-- Next control -->
-          <div class="carousel-control-next" role="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="width: auto; background: transparent; border: none; font-size: 2rem; margin-right: -50px; margin-top: -50px; position: absolute; top: 50%; transform: translateY(-50%);">
-            <span class="carousel-control-next-icon" aria-hidden="true" style="border-radius: 50%; padding: 20px; color: #fff;"></span>
+          <div class="carousel-control-next" role="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next" style="width: auto; background: transparent; border: none; font-size: 2rem; margin-right: -50px; margin-top: -50px; position: absolute; top: 50%; transform: translateY(-50%);">
+            <span class="carousel-control-next-icon" aria-hidden="true" style="border-radius: 50%; padding: 20px; color: #fff; margin-top: 100px;"></span>
             <span class="visually-hidden">Next</span>
           </div>
         </div>
       </div>
 
 
-      <div class="d-flex justify-content-between mt-1 pt-2">
+      <div class="d-flex mt-1 pt-2">
         <h2 id="Popular" style="color: #FFFFFF; margin-left: 12px;">ยอดนิยม</h2>
-        <a id="All" href="article_information.php?lang=<?php echo $lang ?>" class="btn" style="border-radius: 10px; background: #FFF; text-decoration: none; color: #044374; padding: 8px 16px; margin-right: 50px; position: relative; z-index: 1; pointer-events: auto;">ดูทั้งหมด</a>
       </div>
 
       <div class="row pt-3">
@@ -219,15 +259,31 @@ require_once './service/action.php';
         $languageIds = [
           'th' => [31, 26, 9],
           'en' => [151, 132, 152],
+          'cn' =>[116, 95, 117],
+          'jav'=>[213, 193, 214]
         ];
         $targetIds = isset($languageIds[$selectedLanguage]) ? $languageIds[$selectedLanguage] : [];
         foreach ($article_case as $row) {
           if (in_array($row['id'], $targetIds) && $row['lang'] == $selectedLanguage) {
         ?>
-            <div class="card m-4 mt-0 position-relative" style="width: 380px; height: 250px; border-radius: 10px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
-              <img src="./uploads/รูปบทความ/<?php echo $row['img']; ?>" class="card-img-top" alt="Article Image" style="object-fit: cover; width: 380px; height: 100%; border-radius: 10px;">
-              <div class="position-absolute bottom-0 start-0" style="background-color: white; width: 100%; height: 40px;">
-                <a href="article_case.php?tag=article_case&title=<?php echo urlencode($row['title']); ?>&tb=article_case&id=<?php echo $row['id']; ?>" style="color: #044374; text-decoration: none; padding-left: 5px; font-weight: 600; margin-top: 10px; display: inline-block;"><?php echo $row['title']; ?></a>
+            <div class="rounded-element-aticle" style="width: 440px; height: auto; padding-bottom: 10px; margin-bottom: 20px; overflow: hidden;">
+              <div class="card-body1" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; background-color: #FFF;overflow: hidden;">
+                <a href="article_case.php?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>">
+                  <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" style="width: 100%; height: 200px; object-fit: cover;">
+                  <div class="card-title">
+                    <p class="card-title" style="font-size: 18px; color: #044374; font-weight: 700; padding: 0px 0px 0px 10px; margin-top: 10px;"><?php echo $row['title']; ?></p>
+                  </div>
+                  <div class="card-text" style="display: flex; flex-wrap: wrap; overflow: hidden; margin-left: 10px;">
+                    <img src="./uploads/icon/calendar.png" alt="" style="width: 20px; height: 20px; margin-right: 5px;">
+                    <p class="card-text1" style="margin-top: 1px; color: #044374; margin-right: 220px;">
+                      <?php echo date('d/m/Y', strtotime($row['date_time'])); ?>
+                    </p>
+                    <img src="./uploads/icon/view.png" alt="" style="width: 22px; height: 20px;">
+                    <p class="card-text2" style=" color: #044374; margin-left: 5px;">
+                      <?php echo $row['view']; ?>
+                    </p>
+                  </div>
+                </a>
               </div>
             </div>
         <?php
@@ -237,9 +293,10 @@ require_once './service/action.php';
       </div>
 
 
+
     </div>
   </div>
-
+  </div>
 
   <!-- medicine warning -->
   <div class="container-fluid">
@@ -323,7 +380,7 @@ require_once './service/action.php';
             if ($row['lang'] == $selectedLanguage && $count < $displayLimit) {
           ?>
               <div class="col-lg-2 mb-4 mt-4 d-flex justify-content-center flex-column justify-content-center align-items-center">
-                <div class="rounded-element-hospital mb-4">
+                <div class="rounded-element-hospital mb-4">       
                   <img src="uploads/hospitalClinic/<?php echo $row['logo']; ?>" class="rounded-element-hospital-img">
                 </div>
                 <p class="d-flex flex-wrap text-nowrap fw-300" style="color:black; font-size:20px; text-align: center;"><?php echo $row['name']; ?></p>

@@ -3,6 +3,32 @@ require_once 'config/db_conn.inc.php';
 require_once 'service/action.php';
 $id = $_GET['id'];
 $title = $_GET['title'];
+$id_article = isset($_GET['id_article']) ? $_GET['id_article'] : null;
+
+$dbConfig = new DashboardConfig();
+$conn = $dbConfig->getConnection();
+
+// ดึงข้อมูลโรคที่มี id ตรงกับที่ระบุใน URL
+$sql = "SELECT * FROM article_case WHERE id = :id";
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($result) {
+    // เพิ่มจำนวนผู้เข้าชม
+    $updatedViews = $result['view'] + 1;
+    // อัปเดตจำนวนผู้เข้าชมในตาราง disease_case ที่มี id ตรงกับที่ระบุใน URL
+    $updateSql = "UPDATE article_case SET view = :view WHERE id = :id";
+    $updateStmt = $conn->prepare($updateSql);
+    $updateStmt->bindParam(':view', $updatedViews, PDO::PARAM_INT);
+    $updateStmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $updateStmt->execute();
+} else {
+    // ไม่พบข้อมูลที่ตรงกับ id ที่ระบุ
+}
+
+$stmt->closeCursor();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,18 +46,18 @@ $title = $_GET['title'];
 
 <body>
     <!-- include component header -->
-  <?php include 'components/header.php'; ?>
+    <?php include 'components/header.php'; ?>
 
     <!-- include component navbar -->
     <?php include 'components/nav.php'; ?>
-    <div class="way" style="width: 1400px; height: 40px; border-radius: 0px 100px 100px 0px; background: #044374; margin-bottom: 5px;">
-        <div class="container">
+    <div class="way" style="border-radius: 0px 100px 100px 0px; background: #044374;">
+    <div class="container">
             <ul class="breadcrumbs">
                 <li class="breadcrumbs__item">
-                    <a href="index.php?lang=<?php echo $lang ?>" class="breadcrumbs__link">หน้าหลัก</a>
+                    <a href="index.php?lang=<?php echo $lang ?>" id="breadcrub_home" class="breadcrumbs__link">หน้าหลัก</a>
                 </li>
                 <li class="breadcrumbs__item">
-                    <a href="article_information.php?lang=<?php echo $lang?>" class="breadcrumbs__link">สาระสุขภาพ</a>
+                    <a href="article_information.php?lang=<?php echo $lang ?>" id="breadcrub_article" class="breadcrumbs__link">สาระสุขภาพ</a>
                 </li>
                 <li class="breadcrumbs__item">
                     <a href="" class="breadcrumbs__link"><?php echo $title ?></a>
@@ -39,16 +65,24 @@ $title = $_GET['title'];
             </ul>
         </div>
     </div>
+    <script>
+        var lang = '<?php echo $lang; ?>';
+        document.getElementById('breadcrub_home').innerText = translations['breadcrub_home'][lang];
+        document.getElementById('breadcrub_article').innerText = translations['breadcrub_article'][lang];
+    </script>
     <div class="container">
         <div class="row justify-content-center">
             <?php foreach ($article_case as $row) {
                 $article_case = $id;
                 if ($row['id'] == $article_case) { ?>
                     <h1 class="article_case"><?php echo $row['title']; ?></h1>
-                    <p class="article_case-date"><?php echo $row['date_time']; ?></p>
+                    <div class="display-infor" style="display: flex; flex-wrap: wrap; font-size: 18px;">
+                        <p class="article_case-count" id="visit_count" style="margin-right: 5px;"><?php echo $row['view'] ?> จำนวนผู้เข้าชม |</p>
+                        <p class="article_case-date"><?php echo date('d/m/Y', strtotime($row['date_time'])); ?></p>
+                    </div>
                     <div class="article_case-content">
                         <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" class="d-block w-100 object-fit-cover">
-                    <br>
+                        <br>
                         <div class="article_case-details">
                             <p class="article_case-title"><?php echo $row['description']; ?></p>
                         </div>

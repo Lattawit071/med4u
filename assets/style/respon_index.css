@@ -1,0 +1,19 @@
+@media screen and (max-width: 376px) {
+    .dropdown{
+        margin-right: 10px;
+    }
+    .dropdown:hover .dropdown-content{
+        display: block;
+        padding-right: 20px;
+    }
+    .dropdown-content a{
+    padding: 2px 13px 2px 2px;
+    }
+    .carousel-control-next-icon,.carousel-control-prev{
+        display: none;
+    }
+    .carousel-indicators [data-bs-target]{
+        height: 7px;
+    }
+    }
+  

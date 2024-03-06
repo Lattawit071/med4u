@@ -47,7 +47,6 @@ $images_small = $stmt->fetchAll(PDO::FETCH_ASSOC);
             background-color: rgba(255, 255, 255, 0.5);
             border-radius: 50%;
             margin-left: -20px;
-            /* เพิ่ม margin-left ที่ไม่มีใน .carousel-control-prev2 */
         }
 
         .carousel-control-next2 {
@@ -136,63 +135,111 @@ $images_small = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <div class="container-fluid" style="background-image:url('./uploads/ข้อมูลโรงพยาบาล/bg_hospital_case.png'); background-size: cover; background-position: center; padding: 20px; text-align: justify;">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <p class="hospital_case-location" style="color: white; padding: 10px 0; margin: 0; display: flex; align-items: center; font-weight:bold; font-size: 20px;">
-                        <img src="./uploads/ข้อมูลโรงพยาบาล/location.png" style="width: 48px; height: 60px; margin-right: 10px;">
-                        <?php echo $row['location']; ?>
-                    </p>
-                </div>
-                <div class="col-md-6">
-                    <p class="hospital_case-phone" style="color: white; padding: 10px 0; margin: 0; display: flex; align-items: center; font-weight:bold; font-size: 20px;">
-                        <img src="./uploads/ข้อมูลโรงพยาบาล/phone.png" style="width: 65px; height: 65px; margin-right: 10px; margin-left: 150px;">
-                        <?php echo $row['phone']; ?>
-                    </p>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <p class="hospital_case-location" style="color: white; font-weight: bold; font-size: 20px;">
+                    <img src="./uploads/ข้อมูลโรงพยาบาล/location.png" style="width: 48px; height: 60px; margin-right: 10px;">
+                    <?php echo $row['location']; ?>
+                </p>
+            </div>
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <p class="hospital_case-phone" style="color: white; font-weight: bold; font-size: 20px;">
+                    <img src="./uploads/ข้อมูลโรงพยาบาล/phone.png" style="width: 65px; height: 65px; margin-right: 10px;">
+                    <?php echo $row['phone']; ?>
+                </p>
             </div>
         </div>
     </div>
+</div>
 
 
     <div class="container">
         <h2 class="d-flex mt-5 pt-2 mb-3" style="color: #062E73;">เด่นด้านการรักษา</h2>
 
-        <div class="column" style="text-align: center; display: flex;">
-            <?php if (!empty($row['img_treatment_1'])) : ?>
-                <div class="img_treatment_1" style="position: relative; margin-right: 20px;">
-                    <img src="./uploads/ข้อมูลโรงพยาบาล/<?php echo $row['img_treatment_1']; ?>" style="width: 150px; height: 130px;">
-                    <div class="position-absolute bottom-0 start-0" style="width: 100%; height: 40px; position: absolute; bottom: 0;">
-                        <p style="color: white; font-size: 18px;"><?php echo $row['treatment_1']; ?></p>
+        <?php
+        if (isset($_GET['hospital_id'])) {
+            $hospital_id = $_GET['hospital_id'];
+            echo '<div class="d-flex flex-wrap">';
+            foreach ($hp_outstand_treatment as $row) {
+                if ($row['hospital_id'] == $hospital_id) {
+        ?>
+                    <div class="column" style="text-align: center; margin: 20px; flex: 0 0 150px;">
+                        <?php if (!empty($row['img'])) : ?>
+                            <div style="position: relative;">
+                                <img src="./uploads/ข้อมูลโรงพยาบาล/<?php echo $row['img']; ?>" style="width: 150px; height: 130px;">
+                                <div class="position-absolute bottom-0 start-0" style="width: 100%; height: 40px; position: absolute; bottom: 0;">
+                                    <?php if (!empty($row['treatment'])) : ?>
+                                        <p style="font-size: 18px; color: white;"><?php echo $row['treatment']; ?></p>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                     </div>
-                </div>
-            <?php endif; ?>
-
-            <?php if (!empty($row['img_treatment_2'])) : ?>
-                <div class="img_treatment_2" style="position: relative; margin-right: 20px;">
-                    <img src="./uploads/ข้อมูลโรงพยาบาล/<?php echo $row['img_treatment_2']; ?>" style="width: 150px; height: 130px;">
-                    <div class="position-absolute bottom-0 start-0" style="width: 100%; height: 40px; position: absolute; bottom: 0;">
-                        <p style="color: white; font-size: 18px;"><?php echo $row['treatment_2']; ?></p>
-                    </div>
-                </div>
-            <?php endif; ?>
-
-            <?php if (!empty($row['img_treatment_3'])) : ?>
-                <div class="img_treatment_3" style="position: relative; margin-right: 20px;">
-                    <img src="./uploads/ข้อมูลโรงพยาบาล/<?php echo $row['img_treatment_3']; ?>" style="width: 150px; height: 130px;">
-                    <div class="position-absolute bottom-0 start-0" style="width: 100%; height: 40px; position: absolute; bottom: 0;">
-                        <p style="color: white; font-size: 18px;"><?php echo $row['treatment_3']; ?></p>
-                    </div>
-                </div>
-            <?php endif; ?>
-
-        </div>
-
-
-        <h3 class="d-flex justify-content-center mt-1 pt-2" style="color: #062E73;">แพ็กเกจและโปรโมชั่น</h3>
+        <?php
+                }
+            }
+            echo '</div>';
+        }
+        ?>
     </div>
-    <script src="./assets/js/scroll-top.js"></script>
-    <script src="bootstrap-5.3.x/js/bootstrap.bundle.min.js"></script>
+    <div class="container">
+        <h3 class="d-flex justify-content-center mt-1 pt-2" style="color: #062E73;">แพ็กเกจและโปรโมชั่น</h3>
+        <div class="row justify-content-center">
+    <?php
+    if (isset($_GET['hospital_id'])) {
+        $hospital_id = $_GET['hospital_id'];
+        foreach ($promotion as $row) {
+            if ($row['hospital_id'] == $hospital_id) {
+    ?>
+                <div class="rounded-element-promotion-hospital" style="width: 380px; height: auto; padding-bottom: 10px; margin-right: 20px; margin-bottom: 20px;">
+                    <div class="card-body" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                        <a href="<?php echo $row['link']; ?>">
+                            <img src="uploads/โปรโมชันโรงพยาบาล/<?php echo $row['img_card']; ?>" class="rounded" style="width: 380px; height: 200px; object-fit: cover;">
+                        </a>
+
+                        <div class="card-title">
+                            <p class="card-title" style="font-size: 18px; font-weight: bold; color: black; padding: 0px 10px 0px 10px; margin-top: 10px;"><?php echo $row['title']; ?></p>
+                        </div>
+                        <div class="card-text" style="display: flex; flex-wrap: wrap; overflow: hidden; padding: 5px 10px 0px 10px; background-color: #C6E6FF; border-radius: 20px; width: 150px; height: 20px; margin-left: 10px;">
+                            <img src="./uploads/ข้อมูลโรงพยาบาล/time_case.png" alt="" style="width: 15px; height: 15px; margin-right: 5px; margin-top: -2px;">
+                            <p class="card-text1" style="margin-top: -3px; color: #044374; font-size: 14px;">
+                                <?php echo date('d/m/Y', strtotime($row['time_date'])); ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+    <?php
+            }
+        }
+    }
+    ?>
+</div>
+
+    </div>
+
+    <?php foreach ($hospital_cases as $row) : ?>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <a href="<?php echo $row['link']; ?>">
+                <button type="button" class="btn" style="width: 300px; height: 50px; background-color: #062E73; color: #FFFFFF; font-size: 24px; font-style: normal; margin-bottom: 10px; border-radius: 20px; margin-top: 30px;">เข้าสู่เว็บไซต์</button>
+            </a>
+        </div>
+    <?php endforeach; ?>
+
+    </div>
+
+     <!-- ปุ่ม Top scroll -->
+  <div id="scroll-top" onclick="scrollToTOP()">
+    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512">
+      <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+    </svg>
+  </div>
+  <!-- Footer -->
+  <?php include 'components/footer.php'; ?>
+  <!-- Footer -->
+  <script src="./assets/js/scroll-top.js"></script>
+  <script src="bootstrap-5.3.x/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/lang.js"></script>
 </body>
 
 </html>

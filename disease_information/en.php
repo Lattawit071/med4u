@@ -197,7 +197,7 @@ require_once '../service/action.php';
             var urlParams = new URLSearchParams(window.location.search);
             var idDisease = urlParams.get('id_disease');
             if (idDisease) {
-                var lang = 'cn';
+                var lang = 'en';
                 var categoryBtn = document.getElementById('categoryBtn');
 
                 switch (idDisease) {

@@ -276,6 +276,25 @@ body {
   box-shadow: 0px 0px 10px #000770;
 }
 
+.rounded-element-promotion-hospital {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 5px #b6b6b6;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+  border-radius: 10px;
+}
+.rounded-element-promotion-hospital:hover {
+  transform: scale(1.02);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 10px #7b7777;
+}
+
 .rounded-element-disease_case {
   background-color: #ffffff;
   display: flex;
@@ -284,7 +303,7 @@ body {
   box-shadow: 0px 0px 5px #b6b6b6;
   cursor: pointer;
   transition: transform 0.25s ease;
-  width: 100%;
+  width: 380px;
   border-radius: 10px;
   margin: 10px;
 }
@@ -320,7 +339,10 @@ body {
   align-items: center;
   box-shadow: 0px 0px 10px #000770;
 }
-
+.card-body img{
+  width: 380px; 
+  height: 230px;
+}
 .drug-warning {
   background-color: #ffffff;
   border-radius: 8px 8px 8px 8px;
@@ -372,7 +394,6 @@ r .drug-warning #title {
   display: none;
 }
 
-
 #scroll-top:hover {
   box-shadow: 0px 0px 10px #000770;
 }
@@ -380,6 +401,15 @@ r .drug-warning #title {
 #scroll-top>span {
   font-size: 16px;
 }
+
+/* Responsive positioning */
+@media (max-width: 768px) {
+  #scroll-top {
+    bottom: 15px;
+    right: 40px;
+  }
+}
+
 
 .footer {
   background-color: #EDEDED;
@@ -405,7 +435,7 @@ r .drug-warning #title {
   -webkit-box-orient: vertical;
 }
 
-@media (max-width: 1000px) {
+/* @media (max-width: 1000px) {
   .drug-row {
     border-radius: 18px;
     background-color: #ffffff;
@@ -420,9 +450,9 @@ r .drug-warning #title {
     justify-content: center;
     flex-direction: column;
     margin: 0px;
-  }
+  } */
 
-  .card-documents {
+  /* .card-documents {
     display: flex !important;
     flex-direction: column;
   }
@@ -451,7 +481,7 @@ r .drug-warning #title {
     width: 100% !important;
     font-size: 10px !important;
   }
-}
+} */
 
 .card#cure {
   border: none !important;
@@ -585,7 +615,6 @@ a {
 
 .header-container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
