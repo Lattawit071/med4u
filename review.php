@@ -51,20 +51,20 @@ if (!empty($category_id)) {
     <!-- include component navbar -->
     <?php include 'components/nav.php'; ?>
 
-    <div class="way" style="border-radius: 0px 100px 100px 0px; background: #044374;">
+    <div class="way" style="background: #044374;">
     <div class="container">
      <ul class="breadcrumbs">
       <li class="breadcrumbs__item">
-        <a href="index.php?lang=<?php echo $lang?>" class="breadcrumbs__link">หน้าหลัก</a>
+        <a href="index?lang=<?php echo $lang?>" class="breadcrumbs__link">หน้าหลัก</a>
       </li>
       <li class="breadcrumbs__item">
-        <a href="review.php?lang=<?php echo $lang?>" class="breadcrumbs__link">รีวิวสินค้า</a>
+        <a href="review?lang=<?php echo $lang?>" class="breadcrumbs__link">รีวิวสินค้า</a>
       </li>
      </ul>
     </div>
   </div>
 
-    <img src="uploads/รีวิว/bg_review.png" class="w-100" style="height: 500px; width: 100%;" alt="">
+    <img src="uploads/รีวิว/bg_review.png" style="height: 500px; width: 100%;" alt="">
     <h2 style="color: #044374; text-align: center; margin-top: 10px;">รีวิวเครื่องสำอาง สกินแคร์</h2>
     <div class="container">
         <div class="row justify-content-center">
@@ -94,7 +94,7 @@ if (!empty($category_id)) {
             ?>
                 <div class="card rounded-element-disease_case" style="width: 300px;">
                     <div class="card-body">
-                        <a href="review_case.php?&tag=review_case&title=<?php echo $row['product_name']; ?>&tb=review_case&id=<?php echo $row['id']; ?>">
+                        <a href="review_case?&tag=review_case&title=<?php echo $row['product_name']; ?>&tb=review_case&id=<?php echo $row['id']; ?>">
                             <img src="uploads/รีวิว/<?php echo $row['img']; ?>" class="rounded w-100" style="object-fit: cover; width: 250px;height: 270px;">
                         </a>
                         <div class="card-title">
@@ -163,7 +163,7 @@ if (!empty($category_id)) {
                     ?>
                             <div class="card rounded-element-disease_case mx-2" style="width: 300px;">
                                 <div class="card-body">
-                                    <a href="review_case.php?&tag=review_case&title=<?php echo $row['product_name']; ?>&tb=review_case&id=<?php echo $row['id']; ?>">
+                                    <a href="review_case?&tag=review_case&title=<?php echo $row['product_name']; ?>&tb=review_case&id=<?php echo $row['id']; ?>">
                                         <img src="uploads/รีวิว/<?php echo $row['img']; ?>" class="rounded w-100" style="object-fit: cover; width: 250px;height: 280px;">
                                     </a>
                                     <div class="card-title">

@@ -50,14 +50,14 @@ $stmt->closeCursor();
 
     <!-- include component navbar -->
     <?php include 'components/nav.php'; ?>
-    <div class="way" style="border-radius: 0px 100px 100px 0px; background: #044374;">
+    <div class="way" style="background: #044374;">
     <div class="container">
             <ul class="breadcrumbs">
                 <li class="breadcrumbs__item">
-                    <a href="index.php?lang=<?php echo $lang ?>" id="breadcrub_home" class="breadcrumbs__link">หน้าหลัก</a>
+                    <a href="index?lang=<?php echo $lang ?>" id="breadcrub_home" class="breadcrumbs__link">หน้าหลัก</a>
                 </li>
                 <li class="breadcrumbs__item">
-                    <a href="article_information.php?lang=<?php echo $lang ?>" id="breadcrub_article" class="breadcrumbs__link">สาระสุขภาพ</a>
+                    <a href="article_information?lang=<?php echo $lang ?>" id="breadcrub_article" class="breadcrumbs__link">สาระสุขภาพ</a>
                 </li>
                 <li class="breadcrumbs__item">
                     <a href="" class="breadcrumbs__link"><?php echo $title ?></a>
@@ -75,13 +75,15 @@ $stmt->closeCursor();
             <?php foreach ($article_case as $row) {
                 $article_case = $id;
                 if ($row['id'] == $article_case) { ?>
-                    <h1 class="article_case"><?php echo $row['title']; ?></h1>
+                    <h1 class="article_case_title"><?php echo $row['title']; ?></h1>
                     <div class="display-infor" style="display: flex; flex-wrap: wrap; font-size: 18px;">
                         <p class="article_case-count" id="visit_count" style="margin-right: 5px;"><?php echo $row['view'] ?> จำนวนผู้เข้าชม |</p>
                         <p class="article_case-date"><?php echo date('d/m/Y', strtotime($row['date_time'])); ?></p>
                     </div>
                     <div class="article_case-content">
-                        <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" class="d-block w-100 object-fit-cover">
+                    <div style="text-align: center;">
+                                <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" loading="lazy" style="width: 70%;">
+                            </div>
                         <br>
                         <div class="article_case-details">
                             <p class="article_case-title"><?php echo $row['description']; ?></p>

@@ -95,7 +95,7 @@ require_once 'service/action.php';
   <?php include 'components/header.php'; ?>
   <!-- include component navbar -->
   <?php include 'components/nav.php'; ?>
-  <div class="way" style="border-radius: 0px 100px 100px 0px; background: #044374;">
+  <div class="way" style="background: #044374;">
     <div class="container">
       <ul class="breadcrumbs">
         <li class="breadcrumbs__item">
@@ -168,7 +168,7 @@ require_once 'service/action.php';
   </div>
 
   <div class="container">
-    <h2 class="d-flex mt-1 pt-2" id="disease_title" style="color: #062E73;">โรงพยาบาลแนะนำ</h2>
+    <h2 class="d-flex mt-1 pt-2" id="Recommended hospital" style="color: #062E73;">โรงพยาบาลแนะนำ</h2>
     <!-- Swiper -->
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
@@ -204,9 +204,9 @@ require_once 'service/action.php';
 
 
   </div>
-  <div class="container">
+  <!-- <div class="container">
     <h2 class="d-flex  mt-1 pt-2" id="disease_title" style="color:black;">คลินิคผิวหนังและเส้นผม</h2>
-  </div>
+  </div> -->
   <!-- <div class="container">
     <h2 class="d-flex  mt-1 pt-2" id="disease_title" style="color:black;">คลินิคศัลยกรรม</h2>
   </div> 

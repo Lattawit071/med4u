@@ -48,30 +48,30 @@ $stmt->closeCursor();
 </head>
 
 <body>
- <!-- include component header -->
- <header class="header">
-    <div class="header-container">
-      <a href="<?php echo $nav_header_link; ?>" class="text-light" id="nav_vaccine"><?php echo $nav_header_title; ?></a>
-      <div class="dropdown">
-        <button class="dropbtn" id="selectedLanguage">
-          <img src="./uploads/lang/thailand.png" alt="Language" class="flag">TH
-        </button>
-        <div class="dropdown-content" id="myDropdown">
-          <a href="?lang=th" onclick="changeLanguage('TH')"><img src="./uploads/lang/thailand.png" alt="Language" class="flag">TH</a>
-          <a href="?lang=en" onclick="changeLanguage('EN')"><img src="./uploads/lang/english.png" alt="Language" class="flag">EN</a>
-          <a href="?lang=cn" onclick="changeLanguage('CN')"><img src="./uploads/lang/china.png" alt="Language" class="flag">CN</a>
-          <a href="?lang=jap" onclick="changeLanguage('JAP')"><img src="./uploads/lang/japan.png" alt="Language" class="flag">JAP</a>
-          <a href="#" onclick="changeLanguage('ar')"><img src="./uploads/lang/arab.png" alt="Language" class="flag">AR</a>
+    <!-- include component header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="<?php echo $nav_header_link; ?>" class="text-light" id="nav_vaccine"><?php echo $nav_header_title; ?></a>
+            <div class="dropdown">
+                <button class="dropbtn" id="selectedLanguage">
+                    <img src="./uploads/lang/thailand.png" alt="Language" class="flag">TH
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="?lang=th" onclick="changeLanguage('TH')"><img src="./uploads/lang/thailand.png" alt="Language" class="flag">TH</a>
+                    <a href="?lang=en" onclick="changeLanguage('EN')"><img src="./uploads/lang/english.png" alt="Language" class="flag">EN</a>
+                    <a href="?lang=cn" onclick="changeLanguage('CN')"><img src="./uploads/lang/china.png" alt="Language" class="flag">CN</a>
+                    <a href="?lang=jap" onclick="changeLanguage('JAP')"><img src="./uploads/lang/japan.png" alt="Language" class="flag">JAP</a>
+                    <a href="#" onclick="changeLanguage('ar')"><img src="./uploads/lang/arab.png" alt="Language" class="flag">AR</a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </header>
+    </header>
 
 
     <!-- include component navbar -->
     <?php include 'components/nav.php'; ?>
-    <div class="way" style="border-radius: 0px 100px 100px 0px; background: #044374;">
-    <div class="container">
+    <div class="way" style="background: #044374;">
+        <div class="container">
             <ul class="breadcrumbs">
                 <li class="breadcrumbs__item">
                     <a href="index.php?lang=<?php echo $lang ?>" id="breadcrub_home" class="breadcrumbs__link">หน้าหลัก</a>
@@ -86,34 +86,37 @@ $stmt->closeCursor();
         </div>
     </div>
     <script>
-    var lang = '<?php echo $lang; ?>';
-    document.getElementById('breadcrub_home').innerText = translations['breadcrub_home'][lang];
-    document.getElementById('breadcrub_disease').innerText = translations['breadcrub_disease'][lang];
-</script>
-<div class="container">
-    <div class="row justify-content-center">
-        <?php foreach ($disease_case as $row) {
-            $disease_case = $id;
-            if ($row['id'] == $disease_case) { ?>
-                <div class="col-lg-12 col-md-10 col-sm-12">
-                    <h1 class="disease_case"><?php echo $row['title']; ?></h1>
-                    <div class="display" style="display: flex; flex-wrap: wrap; font-size: 18px;">
-                    <p class="disease_case-count" id="visit_count" style="margin-right: 5px;"><?php echo $row['view'] ?> จำนวนผู้เข้าชม |</p>
-                    <p class="disease_case-date"><?php echo date('d/m/Y', strtotime($row['date_time'])); ?></p>
-                </div>
-                    <div class="disease_case-content">
-                        <img src="uploads/รูปประกอบโรค/<?php echo $row['img']; ?>" class="img-fluid" loading="lazy">
-                        <br>
-                        <div class="disease_case-details">
-                            <p class="disease_case-title"><?php echo $row['description']; ?></p>
-                            <!-- <a href="<?php echo $row['link']; ?>">แหล่งที่มา</a> -->
+        var lang = '<?php echo $lang; ?>';
+        document.getElementById('breadcrub_home').innerText = translations['breadcrub_home'][lang];
+        document.getElementById('breadcrub_disease').innerText = translations['breadcrub_disease'][lang];
+    </script>
+    <div class="container">
+        <div class="row justify-content-center">
+            <?php foreach ($disease_case as $row) {
+                $disease_case = $id;
+                if ($row['id'] == $disease_case) { ?>
+                    <div class="col-lg-12 col-md-10 col-sm-12">
+                        <h1 class="disease_case_title"><?php echo $row['title']; ?></h1>
+                        <div class="display-infor" style="display: flex; flex-wrap: wrap; font-size: 18px;">
+                            <p class="disease_case-count" id="visit_count" style="margin-right: 5px;"><?php echo $row['view'] ?> จำนวนผู้เข้าชม |</p>
+                            <p class="disease_case-date"><?php echo date('d/m/Y', strtotime($row['date_time'])); ?></p>
+                        </div>
+                        <div class="disease_case-content">
+                            <div style="text-align: center;">
+                                <img src="uploads/รูปประกอบโรค/<?php echo $row['img']; ?>" loading="lazy" style="width: 70%;">
+                            </div>
+
+                            <br>
+                            <div class="disease_case-details">
+                                <p class="disease_case-title"><?php echo $row['description']; ?></p>
+                                <!-- <a href="<?php echo $row['link']; ?>">แหล่งที่มา</a> -->
+                            </div>
                         </div>
                     </div>
-                </div>
-        <?php }
-        } ?>
+            <?php }
+            } ?>
+        </div>
     </div>
-</div>
 
 
     <!-- ปุ่ม Top scroll -->

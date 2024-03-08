@@ -56,14 +56,14 @@ require_once 'service/action.php';
   <?php include 'components/header.php'; ?>
   <?php include 'components/nav.php'; ?>
 
-  <div class="way" style="border-radius: 0px 100px 100px 0px; background: #044374;">
+  <div class="way" style="background: #044374;">
     <div class="container">
         <ul class="breadcrumbs">
             <li class="breadcrumbs__item">
-                <a href="index.php?lang=<?php echo $lang ?>" id="breadcrub_home" class="breadcrumbs__link">หน้าหลัก</a>
+                <a href="index?lang=<?php echo $lang ?>" id="breadcrub_home" class="breadcrumbs__link">หน้าหลัก</a>
             </li>
             <li class="breadcrumbs__item">
-                <a href="disease_information.php?lang=<?php echo $lang ?>" id="breadcrub_disease" class="breadcrumbs__link">โรคน่ารู้</a>
+                <a href="disease_information?lang=<?php echo $lang ?>" id="breadcrub_disease" class="breadcrumbs__link">โรคน่ารู้</a>
             </li>
         </ul>
     </div>
@@ -97,7 +97,7 @@ require_once 'service/action.php';
               <div class="carousel-item <?php echo $actives; ?>">
                 <div class="row">
                   <div class="col-md-7">
-                    <a href="disease_case.php?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>">
+                    <a href="disease_case?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>">
                     <img src="uploads/รูปประกอบโรค/<?php echo $row['img']; ?>" style="object-fit: cover; width: 100%; height: 360px;">
                   </a>
                   </div>
@@ -105,7 +105,7 @@ require_once 'service/action.php';
                     <div class="title" style="justify-content: center;">
                       <h3 class="card-title" style="color: black; text-align: center;"><?php echo $row['title']; ?></h3>
                       <p class="card-title" style="color: black; padding: 8px; margin-right: 20px;"><?php echo $row['review_description']; ?></p>
-                      <a id="Read more" href="disease_case.php?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>" style="padding: 10px;">
+                      <a id="Read more" href="disease_case?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>" style="padding: 10px;">
                         <?php
                         if ($i == 0) {
                           echo "อ่านเพิ่มเติม";
@@ -150,7 +150,7 @@ require_once 'service/action.php';
         โปรดเลือกหมวดหมู่
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" id="All" href="disease_information.php?&lang=<?php echo $lang ?>" onclick="changeCategory('ทั้งหมด');">ทั้งหมด</a></li>
+        <li><a class="dropdown-item" id="All" href="disease_information?&lang=<?php echo $lang ?>" onclick="changeCategory('ทั้งหมด');">ทั้งหมด</a></li>
         <li><a class="dropdown-item" id="Skin and hair" href="?id_disease=1&lang=<?php echo $lang ?>" onclick="changeCategory('ผิวหนังและเส้นผม');">ผิวหนังและเส้นผม</a></li>
         <li><a class="dropdown-item" id="Eyes" href="?id_disease=2&lang=<?php echo $lang ?>" onclick="changeCategory('ตา');">ตา</a></li>
         <li><a class="dropdown-item" id="Brain" href="?id_disease=3&lang=<?php echo $lang ?>" onclick="changeCategory('สมอง');">สมอง</a></li>
@@ -272,7 +272,7 @@ require_once 'service/action.php';
     </script>
   </div>
   <div class="container mt-3">
-    <div class="row justify-content-center">
+    <div class="disease_case row">
       <?php
       $selectedCategory = isset($_GET['id_disease']) ? $_GET['id_disease'] : null;
       $lang = isset($_GET['lang']) ? $_GET['lang'] : null;
@@ -297,7 +297,7 @@ require_once 'service/action.php';
       ?>
         <div class="rounded-element-disease_case" style="padding-bottom: 10px;">
           <div class="card-body">
-            <a href="disease_case.php?&tag=disease_case&title=<?php echo urlencode($row['title']); ?>&tb=disease_case&id=<?php echo $row['id']; ?>&lang=<?php echo $lang; ?>">
+            <a href="disease_case?&tag=disease_case&title=<?php echo urlencode($row['title']); ?>&tb=disease_case&id=<?php echo $row['id']; ?>&lang=<?php echo $lang; ?>">
               <img src="uploads/รูปประกอบโรค/<?php echo $row['img']; ?>" class="rounded">
             </a>
 

@@ -33,7 +33,7 @@ $images_small = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $name ?></title>
+    <title><?php echo $name ?></title>
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo/logo_tag.png" />
     <link rel="stylesheet" href="bootstrap-5.3.x/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style/component.css">
@@ -77,7 +77,21 @@ $images_small = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <?php include 'components/header.php'; ?>
     <?php include 'components/nav.php'; ?>
-
+    <div class="way" style="background: #044374;">
+    <div class="container">
+        <ul class="breadcrumbs">
+            <li class="breadcrumbs__item">
+                <a href="index?lang=<?php echo $lang ?>" id="breadcrub_home" class="breadcrumbs__link">หน้าหลัก</a>
+            </li>
+            <li class="breadcrumbs__item">
+                <a href="promotion?lang=<?php echo $lang ?>" class="breadcrumbs__link">โรงพยาบาลและคลินิก</a>
+            </li>
+            <li class="breadcrumbs__item">
+                <a href="hospital_case?lang=<?php echo $lang ?>" class="breadcrumbs__link"><?php echo $name ?></a>
+            </li>
+        </ul>
+    </div>
+</div>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
         <div class="carousel-inner" style="width: 100%; height: 500px;">
             <?php foreach ($images as $i => $row) : ?>

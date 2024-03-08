@@ -39,7 +39,7 @@ if (isset($_GET['lang'])) {
                                     <a class="nav-link" id="nav_home" href="index?lang=<?php echo $lang?>">หน้าหลัก</a>
                                 </li>
                                 <li class="nav-item hover-underline-animation">
-                                    <a class="nav-link" id="nav_diseases" href="disease_information?lang=<?php echo $lang?>">โรคน่ารู้</a>
+                                    <a class="nav-link" id="nav_diseases" href="disease_information.php?lang=<?php echo $lang?>">โรคน่ารู้</a>
                                 </li>
                                 <li class="nav-item hover-underline-animation">
                                     <a class="nav-link" id="nav_information" href="article_information?lang=<?php echo $lang?>">สาระสุขภาพ</a>

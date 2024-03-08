@@ -55,14 +55,14 @@ if (!empty($id_article)) {
   <!-- include component header -->
   <?php include 'components/header.php'; ?>
   <?php include 'components/nav.php'; ?>
-  <div class="way" style="border-radius: 0px 100px 100px 0px; background: #044374;">
+  <div class="way" style="background: #044374;">
     <div class="container">
      <ul class="breadcrumbs">
       <li class="breadcrumbs__item">
-        <a href="index.php?lang=<?php echo $lang?>" id="breadcrub_home" class="breadcrumbs__link">หน้าหลัก</a>
+        <a href="index?lang=<?php echo $lang?>" id="breadcrub_home" class="breadcrumbs__link">หน้าหลัก</a>
       </li>
       <li class="breadcrumbs__item">
-        <a href="article_information.php?lang=<?php echo $lang?>" id="breadcrub_article" class="breadcrumbs__link">สาระสุขภาพ</a>
+        <a href="article_information?lang=<?php echo $lang?>" id="breadcrub_article" class="breadcrumbs__link">สาระสุขภาพ</a>
       </li>
      </ul>
     </div>
@@ -102,13 +102,15 @@ if (!empty($id_article)) {
               <div class="carousel-item <?php echo $actives; ?>">
                 <div class="row">
                   <div class="col-md-7">
+                    <a href="article_case?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>">
                     <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" style="object-fit: cover; width: 100%; height: 360px;">
+                  </a>
                   </div>
                   <div class="col-md-5 d-flex mt-5">
                     <div class="title" style="text-align: justify;">
                       <h3 class="card-title" style="color: black; text-align: center;"><?php echo $row['title']; ?></h3>
                       <p class="card-title" style="color: black; padding: 8px; text-align: justify; margin-right: 20px;"><?php echo $row['review_description']; ?></p>
-                      <a id="Read more" href="article_case.php?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>" style="padding: 10px;">
+                      <a id="Read more" href="article_case?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>" style="padding: 10px;">
                           <?php
                           if ($i == 0) {
                             echo "อ่านเพิ่มเติม";
@@ -159,7 +161,7 @@ if (!empty($id_article)) {
         โปรดเลือกหมวดหมู่
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" id="All" href="article_information.php?lang=<?php echo $lang?>" onclick="changeCategory('ทั้งหมด');">ทั้งหมด</a></li> 
+        <li><a class="dropdown-item" id="All" href="article_information?lang=<?php echo $lang?>" onclick="changeCategory('ทั้งหมด');">ทั้งหมด</a></li> 
         <li><a class="dropdown-item" id="Age 50+" href="?id_article=1&lang=<?php echo $lang?>" onclick="changeCategory('อายุ 50+');">อายุ 50+</a></li>
         <li><a class="dropdown-item" id="Young age" href="?id_article=2&lang=<?php echo $lang?>" onclick="changeCategory('อายุน้อย');">อายุน้อย</a></li>
       </ul>
@@ -204,7 +206,7 @@ if (!empty($id_article)) {
 
   </div>
   <div class="container mt-3">
-    <div class="row justify-content-center">
+    <div class="article_case row">
       <?php
       $selectedCategory = isset($_GET['id_article']) ? $_GET['id_article'] : null;
       $lang = isset($_GET['lang']) ? $_GET['lang'] : null;
@@ -229,7 +231,7 @@ if (!empty($id_article)) {
       ?>
          <div class="rounded-element-disease_case">
           <div class="card-body">
-            <a href="article_case.php?&tag=article_case&title=<?php echo urlencode($row['title']); ?>&tb=article_case&id=<?php echo $row['id']; ?>&lang=<?php echo $lang; ?>">
+            <a href="article_case?&tag=article_case&title=<?php echo urlencode($row['title']); ?>&tb=article_case&id=<?php echo $row['id']; ?>&lang=<?php echo $lang; ?>">
               <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" class="rounded">
             </a>
             <div class="card-title">

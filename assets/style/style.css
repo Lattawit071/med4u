@@ -294,7 +294,6 @@ body {
   align-items: center;
   box-shadow: 0px 0px 10px #7b7777;
 }
-
 .rounded-element-disease_case {
   background-color: #ffffff;
   display: flex;
@@ -306,6 +305,7 @@ body {
   width: 380px;
   border-radius: 10px;
   margin: 10px;
+  
 }
 
 .rounded-element-disease_case:hover {
@@ -316,7 +316,6 @@ body {
   align-items: center;
   box-shadow: 0px 0px 10px #7b7777;
 }
-
 .rounded-element-article {
   background-color: #ffffff;
   display: flex;
@@ -330,7 +329,13 @@ body {
   margin: 10px;
   width: 100%;
 }
+.disease_case{
+  margin-left: 50px;
+}
+.article_case{
+  margin-left: 50px;
 
+}
 .rounded-element-article:hover {
   transform: scale(1.05);
   border-radius: 10px;

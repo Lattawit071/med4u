@@ -44,7 +44,7 @@ require_once './service/action.php';
           $actives = ($i == 0) ? 'active' : '';
       ?>
           <div class="carousel-item <?php echo $actives; ?>">
-            <a href="promotion_case.php?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>">
+            <a href="promotion_case?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>">
             <img src="uploads/โปรโมชันโรงพยาบาล/<?php echo $row['img']; ?>" style="height: 500px;">
             </a>
           </div>
@@ -79,7 +79,7 @@ require_once './service/action.php';
         <!-- Disease 1 -->
         <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
           <div class="rounded-element mb-2">
-            <a href="disease_information.php?&id_disease=1&lang=<?php echo $lang; ?>">
+            <a href="disease_information?&id_disease=1&lang=<?php echo $lang; ?>">
               <img src="uploads/disease_logo/ผม.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
             </a>
           </div>
@@ -89,7 +89,7 @@ require_once './service/action.php';
         <!-- Disease 2 -->
         <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
           <div class="rounded-element mb-2">
-            <a href="disease_information.php?&id_disease=2&lang=<?php echo $lang; ?>">
+            <a href="disease_information?&id_disease=2&lang=<?php echo $lang; ?>">
               <img src="uploads/disease_logo/ตา.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
             </a>
           </div>
@@ -99,7 +99,7 @@ require_once './service/action.php';
         <!-- Disease 3 -->
         <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
           <div class="rounded-element mb-2">
-            <a href="disease_information.php?&id_disease=3&lang=<?php echo $lang; ?>">
+            <a href="disease_information?&id_disease=3&lang=<?php echo $lang; ?>">
               <img src="uploads/disease_logo/สมอง.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
             </a>
           </div>
@@ -109,7 +109,7 @@ require_once './service/action.php';
         <!-- Disease 4 -->
         <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
           <div class="rounded-element mb-2">
-            <a href="disease_information.php?&id_disease=4&lang=<?php echo $lang; ?>">
+            <a href="disease_information?&id_disease=4&lang=<?php echo $lang; ?>">
               <img src="uploads/disease_logo/ลำคอ.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
             </a>
           </div>
@@ -119,7 +119,7 @@ require_once './service/action.php';
         <!-- Disease 5 -->
         <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
           <div class="rounded-element mb-2">
-            <a href="disease_information.php?&id_disease=5&lang=<?php echo $lang; ?>">
+            <a href="disease_information?&id_disease=5&lang=<?php echo $lang; ?>">
               <img src="uploads/disease_logo/สูติ.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
             </a>
           </div>
@@ -129,7 +129,7 @@ require_once './service/action.php';
         <!-- Disease 6 -->
         <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
           <div class="rounded-element mb-2">
-            <a href="disease_information.php?&id_disease=6&lang=<?php echo $lang; ?>">
+            <a href="disease_information?&id_disease=6&lang=<?php echo $lang; ?>">
               <img src="uploads/disease_logo/ลำไส้.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
             </a>
           </div>
@@ -139,7 +139,7 @@ require_once './service/action.php';
         <!-- Disease 7 -->
         <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
           <div class="rounded-element mb-2">
-            <a href="disease_information.php?&id_disease=7&lang=<?php echo $lang; ?>">
+            <a href="disease_information?&id_disease=7&lang=<?php echo $lang; ?>">
               <img src="uploads/disease_logo/ข้อต่อ.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
             </a>
           </div>
@@ -149,7 +149,7 @@ require_once './service/action.php';
         <!-- Disease 8 -->
         <div class="col-lg-3 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">
           <div class="rounded-element mb-2">
-            <a href="disease_information.php?&id_disease=8&lang=<?php echo $lang; ?>">
+            <a href="disease_information?&id_disease=8&lang=<?php echo $lang; ?>">
               <img src="uploads/disease_logo/ช่องปาก.jpg" class="img-rounded-drugs img-fluid" alt="Disease Image">
             </a>
           </div>
@@ -165,7 +165,7 @@ require_once './service/action.php';
     <div class="container">
       <div class="head-article" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0px 20px 0px;">
         <h2 class="d-flex" id="article_title" style="color:#FFFFFF; margin-right: 10px;">สาระสุขภาพ</h2>
-        <a id="All" href="article_information.php?lang=<?php echo $lang ?>" style="text-decoration: none; color: #fff; font-size: 18px; right: 20px;">ดูทั้งหมด</a>
+        <a id="All" href="article_information?lang=<?php echo $lang ?>" style="text-decoration: none; color: #fff; font-size: 18px; right: 20px;">ดูทั้งหมด</a>
       </div>
 
       <div class="card2" style="width: 100%; height: 400px; position: relative; background-color: #FFF;">
@@ -198,7 +198,7 @@ require_once './service/action.php';
                 <div class="carousel-item <?php echo $actives; ?>">
                   <div class="row">
                     <div class="col-md-7">
-                      <a href="article_case.php?&tag=article_case&title=<?php echo $row['title']; ?>&tb=article_case&id=<?php echo $row['id']; ?>">
+                      <a href="article_case?&tag=article_case&title=<?php echo $row['title']; ?>&tb=article_case&id=<?php echo $row['id']; ?>">
                       <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" style="object-fit: cover; width: 100%; height: 400px;">
                       </a>
                     </div>
@@ -206,7 +206,7 @@ require_once './service/action.php';
                       <div class="title" style="max-width: 500px;">
                         <h3 class="card-title" style="color: black; text-align: center;"><?php echo $row['title']; ?></h3>
                         <p class="card-title" style="color: black; padding: 8px; text-align: justify; margin-right: 20px;"><?php echo $row['review_description']; ?></p>
-                        <a id="Read more" href="article_case.php?&tag=article_case&title=<?php echo $row['title']; ?>&tb=article_case&id=<?php echo $row['id']; ?>" style="padding: 10px;">
+                        <a id="Read more" href="article_case?&tag=article_case&title=<?php echo $row['title']; ?>&tb=article_case&id=<?php echo $row['id']; ?>" style="padding: 10px;">
                           <?php
                           if ($i == 0) {
                             echo "อ่านเพิ่มเติม";
@@ -268,7 +268,7 @@ require_once './service/action.php';
         ?>
             <div class="rounded-element-aticle" style="width: 440px; height: auto; padding-bottom: 10px; margin-bottom: 20px; overflow: hidden;">
               <div class="card-body1" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; background-color: #FFF;overflow: hidden;">
-                <a href="article_case.php?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>">
+                <a href="article_case?&title=<?php echo $row['title']; ?>&id=<?php echo $row['id']; ?>">
                   <img src="uploads/รูปบทความ/<?php echo $row['img']; ?>" style="width: 100%; height: 200px; object-fit: cover;">
                   <div class="card-title">
                     <p class="card-title" style="font-size: 18px; color: #044374; font-weight: 700; padding: 0px 0px 0px 10px; margin-top: 10px;"><?php echo $row['title']; ?></p>
