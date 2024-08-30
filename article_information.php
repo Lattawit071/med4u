@@ -1,11 +1,6 @@
 <?php
 require_once './config/db_conn.inc.php';
 require_once 'service/action.php';
-$id_article = isset($_GET['id_article']) ? $_GET['id_article'] : null;
-$sql = "SELECT * FROM article_case";
-if (!empty($id_article)) {
-  $sql .= " WHERE id_article = :id_article";
-}
 ?>
 
 <!DOCTYPE html>

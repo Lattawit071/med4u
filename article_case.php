@@ -9,7 +9,7 @@ $dbConfig = new DashboardConfig();
 $conn = $dbConfig->getConnection();
 
 // ดึงข้อมูลโรคที่มี id ตรงกับที่ระบุใน URL
-$sql = "SELECT * FROM article_case WHERE id = :id";
+$sql = "SELECT id * FROM article_case WHERE id = :id";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt->execute();
