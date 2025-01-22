@@ -48,38 +48,45 @@ if (!empty($id_promotion)) {
     </div>
   </div>
   <div class="container">
-    <div class="row justify-content-center">
-      <?php foreach ($promotion_case as $row) {
-        if ($row['id'] == $id) { ?>
-          <div class="promotion_case-content">
-            <p class="promotion_case" style="text-align: center; color: #062E73;font-size: 32px;font-style: normal;font-weight: 600;line-height: normal;"><?php echo $row['title']; ?></p>
-            <div style="text-align: center;">
-              <img src="uploads/โปรโมชันโรงพยาบาล/<?php echo $row['img']; ?>" alt="แพ็กเกจตรวจสุขภาพประจำปี" style="width: 779px; height: 800px;">
+  <div class="row justify-content-center">
+    <?php foreach ($promotion_case as $row) {
+      if ($row['id'] == $id) { ?>
+        <div class="promotion_case-content col-12 col-md-10 col-lg-8"> 
+          <h2 class="promotion_case text-center mb-4" style="color: #062E73; font-size: 32px; font-weight: 600; line-height: 1.4;">
+            <?php echo $row['title']; ?>
+          </h2>
+          <div class="text-center">
+            <img src="uploads/โปรโมชันโรงพยาบาล/<?php echo $row['img']; ?>" alt="แพ็กเกจตรวจสุขภาพประจำปี" class="img-fluid rounded-3 shadow-lg" style="max-width: 100%; height: auto;">
+          </div>
+          <div class="information mt-4 d-flex flex-wrap justify-content-between">
+            <div class="price d-flex align-items-center">
+              <img src="./uploads/ข้อมูลโรงพยาบาล/price.png" alt="price" class="me-2" style="height: 30px; width: 30px;">
+              <p class="mb-0" style="color: #062E73; font-size: 20px; font-weight: bold;"><?php echo $row['price']; ?></p>
             </div>
-            <div class="information mt-2"  style="display: flex; flex-wrap: wrap;">
-              <div class="price" style="display: flex; flex-wrap: wrap; margin-left: 260px;">
-                <img src="./uploads/ข้อมูลโรงพยาบาล/price.png" alt="price" style="height: 30px; width: 30px; margin-right: 5px;">
-                <p style="color: #062E73; font-size: 20px; font-weight: bold;"><?php echo $row['price']; ?></p>
-              </div>
-              <div class="time" style="display: flex; flex-wrap: wrap; margin-left: 360px;">
-                <img src="./uploads/ข้อมูลโรงพยาบาล/time.png" alt="" style=" width: 30px; height: 30px; margin-right: 5px;">
-                <p style="color: #062E73; font-size: 20px; font-weight: bold; margin-right: 5px;">สิ้นสุด</p>
-                <p style="color: #062E73; font-size: 20px; font-weight: bold;"><?php echo date('d/m/Y', strtotime($row['date_exp'])); ?></p>
-              </div>
-            </div>
-            <div class="promotion_case-details" style="width: 779px; height: auto; text-align: left; margin-left: 260px;">
-              <p class="promotion_case-title"><?php echo $row['description']; ?></p>
+            <div class="time d-flex align-items-center mt-2">
+              <img src="./uploads/ข้อมูลโรงพยาบาล/time.png" alt="" class="me-2" style="width: 30px; height: 30px;">
+              <p class="mb-0" style="color: #062E73; font-size: 20px; font-weight: bold;">สิ้นสุด</p>
+              <p class="mb-0" style="color: #062E73; font-size: 20px; font-weight: bold;"><?php echo date('d/m/Y', strtotime($row['date_exp'])); ?></p>
             </div>
           </div>
-          <div style="display: flex; justify-content: center; align-items: center;">
-            <a href="<?php echo $row['link']; ?>">
-              <button type="button" class="btn" style="width: 300px; height: 50px; background-color: #062E73; color: #FFF; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); font-size: 24px; font-style: normal; margin-bottom: 10px; border-radius: 20px;">สอบถามรายละเอียด</button>
-            </a>
+          <div class="promotion_case-details mt-3">
+            <p class="promotion_case-title" style="font-size: 18px; line-height: 1.6 ; color: #333;"><?php echo $row['description']; ?></p>
           </div>
-      <?php }
-      } ?>
-    </div>
+        </div>
+        <div class="text-center mt-4">
+          <a href="<?php echo $row['link']; ?>">
+            <button type="button" class="btn w-100 w-md-auto" style="max-width: 300px; height: 50px; background-color: #062E73; color: #FFF; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); font-size: 20px; font-weight: bold; border-radius: 25px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); transition: background-color 0.3s;">
+              สอบถามรายละเอียด
+            </button>
+          </a>
+        </div>
+    <?php }
+    } ?>
   </div>
+</div>
+
+
+
 </body>
 <!-- ปุ่ม Top scroll -->
 <div id="scroll-top" onclick="scrollToTOP()">

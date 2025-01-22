@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;600&family=Noto+Sans+Thai:wght@700&family=Pattaya&display=swap");
-*{
+* {
   padding: 0;
   margin: 0;
 }
@@ -31,7 +31,7 @@ body {
   transition: all 0.5s;
 }
 
-.collapse ul.navbar-nav>li>a {
+.collapse ul.navbar-nav > li > a {
   font-size: 20px;
   color: #0066b2;
   font-weight: 700;
@@ -68,6 +68,12 @@ body {
     font-size: 24px;
   }
 }
+/* .promotion_case-title {
+    word-wrap: break-word;
+    word-spacing: normal;
+    line-height: 1.6;
+    white-space: normal;
+  } */
 
 .rounded-element img {
   object-fit: cover;
@@ -99,7 +105,7 @@ body {
 }
 
 .square {
-  background-color: #0066B2;
+  background-color: #0066b2;
   width: 200px;
   height: 200px;
   border-radius: 25px;
@@ -166,7 +172,6 @@ body {
   height: 280px;
   width: 280px;
   border-radius: 10px;
-
 }
 
 .medicine {
@@ -179,7 +184,7 @@ body {
   transition: transform 0.25s ease;
   overflow: hidden;
   border-radius: 10px;
-  background-color: #0066B2;
+  background-color: #0066b2;
 }
 
 .medicine:hover {
@@ -196,7 +201,6 @@ body {
   height: 280px;
   width: 280px;
   border-radius: 10px;
-
 }
 
 .card-square {
@@ -305,7 +309,6 @@ body {
   width: 380px;
   border-radius: 10px;
   margin: 10px;
-  
 }
 
 .rounded-element-disease_case:hover {
@@ -329,12 +332,11 @@ body {
   margin: 10px;
   width: 100%;
 }
-.disease_case{
+.disease_case {
   margin-left: 50px;
 }
-.article_case{
+.article_case {
   margin-left: 50px;
-
 }
 .rounded-element-article:hover {
   transform: scale(1.05);
@@ -344,8 +346,8 @@ body {
   align-items: center;
   box-shadow: 0px 0px 10px #000770;
 }
-.card-body img{
-  width: 380px; 
+.card-body img {
+  width: 380px;
   height: 230px;
 }
 .drug-warning {
@@ -360,7 +362,6 @@ r .drug-warning #title {
 .footer-end {
   color: #fff;
 }
-
 
 .hover-underline-animation {
   display: inline-block;
@@ -403,7 +404,7 @@ r .drug-warning #title {
   box-shadow: 0px 0px 10px #000770;
 }
 
-#scroll-top>span {
+#scroll-top > span {
   font-size: 16px;
 }
 
@@ -413,19 +414,23 @@ r .drug-warning #title {
     bottom: 15px;
     right: 40px;
   }
+  /* .carousel-indicators {
+    display: none !important;
+  }
+  .carousel-indicators {
+    display: none;
+  } */
 }
 
-
 .footer {
-  background-color: #EDEDED;
-
+  background-color: #ededed;
 }
 
 .cure {
   background-color: #f2f2f2;
 }
 
-.cure>.container>h3#title {
+.cure > .container > h3#title {
   margin-bottom: 30px;
   color: #ffff;
   font-size: 36px;
@@ -457,7 +462,7 @@ r .drug-warning #title {
     margin: 0px;
   } */
 
-  /* .card-documents {
+/* .card-documents {
     display: flex !important;
     flex-direction: column;
   }
@@ -560,12 +565,12 @@ r .drug-warning #title {
 /* end modal */
 
 /* list-group */
-.square-drug>ul.list-group {
+.square-drug > ul.list-group {
   width: 100%;
   text-align: center;
 }
 
-.square-drug>ul.list-group>li {
+.square-drug > ul.list-group > li {
   background: none;
 }
 
@@ -589,7 +594,6 @@ r .drug-warning #title {
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgb(126, 126, 126);
 }
-
 
 .card .img-wrapper {
   max-width: 100%;
@@ -653,7 +657,6 @@ a {
   z-index: 1;
 }
 
-
 .dropdown-content a {
   color: black;
   padding: 2px;
@@ -661,16 +664,13 @@ a {
   display: block;
 }
 
-
 .dropdown-content a:hover {
   background-color: #ddd;
 }
 
-
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
 
 .flag {
   width: 20px;
@@ -684,22 +684,21 @@ a {
   border: none;
 }
 
-.breadcrumbs{
- padding: 10px;
-
+.breadcrumbs {
+  padding: 10px;
 }
-.breadcrumbs__item{
+.breadcrumbs__item {
   display: inline-block;
 }
 .breadcrumbs__item:not(:last-of-type)::after {
-  content:'/';
+  content: "/";
   margin: 0 5px;
   color: white;
 }
-.breadcrumbs__link{
+.breadcrumbs__link {
   text-decoration: none;
   color: white;
 }
-.breadcrumbs__link:hover{
+.breadcrumbs__link:hover {
   text-decoration: underline;
 }

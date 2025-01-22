@@ -346,7 +346,8 @@ if (isset($_GET['lang'])) {
                 <div class="row text-align-center" id="hospitalList">
                     <?php
                     $displayLimit = 12;
-                    $selectedLanguage = 'en';
+                    $selectedLanguage = 'ar';
+                    echo $selectedLanguage;
                     $count = 0;
                     foreach ($hospital as $row) {
                         if ($row['lang'] == $selectedLanguage && $count < $displayLimit) {
@@ -372,6 +373,7 @@ if (isset($_GET['lang'])) {
             </div>
         </div>
     </div>
+    
 
     <script>
         document.getElementById('loadMoreBtn').addEventListener('click', function() {

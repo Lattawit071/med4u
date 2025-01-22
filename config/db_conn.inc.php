@@ -3,8 +3,8 @@ class DashboardConfig
 {
     private const DBHOST = "localhost";
     private const DBUSER = "root";
-    private const DBPASS = "";
-    private const DBNAME = "med4u_document";
+    private const DBPASS = "shev";
+    private const DBNAME = "med4u";
     protected $conn = null;
 
     public function __construct()

@@ -18,6 +18,7 @@ require_once './service/action.php';
 </head>
 
 <body>
+  <div class="">
   <!-- include component header -->
   <?php include 'components/header.php'; ?>
   <!-- include component navbar -->
@@ -175,7 +176,7 @@ require_once './service/action.php';
             for ($j = 0; $j < min(3, count($article_case)); $j++) {
               $active = ($j == 0) ? 'active' : '';
             ?>
-              <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="<?php echo $j; ?>" class="<?php echo $active; ?>" aria-label="Slide <?php echo $j + 1; ?>"></button>
+              <button  type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="<?php echo $j; ?>" class="<?php echo $active; ?>" aria-label="Slide <?php echo $j + 1; ?>"></button>
             <?php
             }
             ?>
@@ -435,6 +436,7 @@ require_once './service/action.php';
   <script src="./assets/js/scroll-top.js"></script>
   <script src="bootstrap-5.3.x/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/js/lang.js"></script>
+  </div>
 </body>
 
 </html>
